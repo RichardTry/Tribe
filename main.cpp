@@ -15,31 +15,38 @@ const int SCREEN_HEIGHT = 630;
 
 int main()
 {
-    RenderWindow app(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tribe");
+    //Создаётся главное окно
+    RenderWindow mainWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tribe");
 
+    //Тектура тестового персонажа
     Texture t_human;
     if (!t_human.loadFromFile("textures/8-direction-movement.png"))
         return EXIT_FAILURE;
 
+    //Спрайт тестового персонажа и установка в него текстуры
     Sprite s_human;
     s_human.setTexture(t_human);
 
     uint tile = 0;
 
+    //Спрайт тайлов земли и загрузка текстуры-индикатора высоты
     Texture t_land;
     if (!t_land.loadFromFile("textures/height-line.png"))
         return EXIT_FAILURE;
     Sprite s_land;
     s_land.setTexture(t_land);
 
+    //Игровой объект тестового персонажа
     Object b;
     b.x = 0;
     b.y = 0;
+
     int speed = 1;
     int animslow = 3;
     int8_t dirOfX = 0, dirOfY = 1;
     uint8_t dir = 0;
 
+    //Тестовый объект-здание с тектурой be64.png
     Object a;
     a.x = 300;
     a.y = 400;
@@ -48,10 +55,12 @@ int main()
         return EXIT_FAILURE;
     a.setTexture(t_a);
 
+    //Вектор всех объектов карты
     vector<Object> objects;
     objects.push_back(a);
     objects.push_back(b);
 
+    //Создание и рандомное размещение тестовых объектов-зданий
     srand(time(nullptr));
     for (int i = 0; i < 10; ++i)
     {
@@ -62,20 +71,21 @@ int main()
         objects.push_back(o);
     }
 
+    //Объект карты и её первоначальная генерация
     Map m;
     m.generate();
 
     camera.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    while (app.isOpen())
+    while (mainWindow.isOpen())
     {
         Event event;
-        while (app.pollEvent(event))
+        while (mainWindow.pollEvent(event))
         {
             switch (event.type)
             {
                 case Event::Closed:
-                    app.close();
+                    mainWindow.close();
                     break;
 
                 case Event::Resized:
@@ -84,8 +94,8 @@ int main()
             }
         }
 
-        //app.setView(View(visible));
-        app.clear(Color(0, 0, 128));
+        //mainWindow.setView(View(visible));
+        mainWindow.clear(Color(0, 0, 128));
 
         if(Keyboard::isKeyPressed(Keyboard::Q))
             camera.zoom(0.9);
@@ -154,20 +164,20 @@ int main()
 
         s_human.setTextureRect(IntRect((tile / animslow % 8) * 60, dir * 110, 60, 110));
 
-        for (int y = 0; y < min(b.y, MAP_SIZE); ++y)
-            for (int x = 0; x < min(b.x, MAP_SIZE); ++x)
+        for (int y = 0; y < MAP_SIZE; ++y)
+            for (int x = 0; x < MAP_SIZE; ++x)
             {
                 s_land.setTextureRect(IntRect(m.height_map[x][y], 0, 1, 1));
                 s_land.setPosition(x * 32, y * 32);
                 s_land.setScale(32, 32);
-                app.draw(s_land);
+                mainWindow.draw(s_land);
             }
 
         for (int s_i = 0; s_i < objects.size(); ++s_i)
-            objects[s_i].draw(app);
-        app.draw(a.sprite);
-        app.draw(s_human);
-        app.display();
+            objects[s_i].draw(mainWindow);
+        mainWindow.draw(a.sprite);
+        mainWindow.draw(s_human);
+        mainWindow.display();
     }
 
     return EXIT_SUCCESS;

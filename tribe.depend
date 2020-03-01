@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1582824049 source:/home/paxom/codeblocks-projects/tribe/main.cpp
+1583097190 source:/home/paxom/codeblocks-projects/tribe/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
