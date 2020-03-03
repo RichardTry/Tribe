@@ -4,6 +4,7 @@
 #include <ctime>
 
 #include "map.h"
+#include "chunk.h"
 #include "object.h"
 #include "view.h"
 
@@ -18,42 +19,35 @@ int main()
     //Создаётся главное окно
     RenderWindow mainWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tribe");
 
+
     //Тектура тестового персонажа
     Texture t_human;
     if (!t_human.loadFromFile("textures/8-direction-movement.png"))
         return EXIT_FAILURE;
 
-    //Спрайт тестового персонажа и установка в него текстуры
-    Sprite s_human;
-    s_human.setTexture(t_human);
-
-    uint tile = 0;
-
-    //Спрайт тайлов земли и загрузка текстуры-индикатора высоты
-    Texture t_land;
-    if (!t_land.loadFromFile("textures/height-line.png"))
+    //Текстура тайлов земли
+    Texture tileset;
+    if (!tileset.loadFromFile("textures/tileset.png"))
         return EXIT_FAILURE;
-    Sprite s_land;
-    s_land.setTexture(t_land);
 
     //Игровой объект тестового персонажа
     Object b;
-    b.x = 0;
-    b.y = 0;
+    b.position.x = 0;
+    b.position.y = 0;
 
-    int speed = 1;
+    float speed = 0.001;
     int animslow = 3;
     int8_t dirOfX = 0, dirOfY = 1;
     uint8_t dir = 0;
 
     //Тестовый объект-здание с тектурой be64.png
     Object a;
-    a.x = 300;
-    a.y = 400;
+    a.visibleSize = Vector2u(2, 2);
+    a.position = Vector2i(3, 4);
     Texture t_a;
     if (!t_a.loadFromFile("textures/be64.png"))
         return EXIT_FAILURE;
-    a.setTexture(t_a);
+    a.texture = t_a;
 
     //Вектор всех объектов карты
     vector<Object> objects;
@@ -65,17 +59,22 @@ int main()
     for (int i = 0; i < 10; ++i)
     {
         Object o;
-        o.x = rand() % 50;
-        o.y = rand() % 50;
-        o.setTexture(t_a);
+        o.visibleSize = Vector2u(2, 2);
+        o.position = Vector2i(rand() % 50, rand() % 50);
+        o.texture = t_a;
         objects.push_back(o);
     }
 
     //Объект карты и её первоначальная генерация
-    Map m;
-    m.generate();
+    Chunk ch1, ch2;
+    ch1.position = Vector2u(0, 0);
+    ch2.position = Vector2u(1, 0);
+    //ch.generate();
 
-    camera.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    camera.setSize(16, 9);
+    camera.setCenter(0,0);
+
+    uint windowWidth = SCREEN_WIDTH, windowHeight = SCREEN_HEIGHT;
 
     while (mainWindow.isOpen())
     {
@@ -89,61 +88,54 @@ int main()
                     break;
 
                 case Event::Resized:
-                    FloatRect visibleArea (b.x, b.y, event.size.width, event.size.height);
+                    camera.setSize(camera.getSize().x / windowWidth * event.size.width, camera.getSize().y / windowHeight * event.size.height);
+                    windowWidth = event.size.width;
+                    windowHeight = event.size.height;
                     break;
             }
         }
 
-        //mainWindow.setView(View(visible));
+        mainWindow.setView(camera);
         mainWindow.clear(Color(0, 0, 128));
 
         if(Keyboard::isKeyPressed(Keyboard::Q))
-            camera.zoom(0.9);
+            camera.zoom(0.99);
         if(Keyboard::isKeyPressed(Keyboard::E))
-            camera.zoom(1.1);
+            camera.zoom(1.01);
 
-        s_human.setPosition(b.x, b.y);
         bool ispr = false;
         if(Keyboard::isKeyPressed(Keyboard::W))
         {
-            b.y -= speed;
+            camera.move(Vector2f(0, -speed * camera.getSize().x));
             dirOfY = -1;
             if(!Keyboard::isKeyPressed(Keyboard::A) && !Keyboard::isKeyPressed(Keyboard::D))
                 dirOfX = 0;
-            tile++;
             ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::A))
         {
-            b.x -= speed;
+            camera.move(Vector2f(-speed * camera.getSize().x, 0));
             dirOfX = -1;
             if(!Keyboard::isKeyPressed(Keyboard::W) && !Keyboard::isKeyPressed(Keyboard::S))
                 dirOfY = 0;
-            tile++;
             ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::S))
         {
-            b.y += speed;
+            camera.move(Vector2f(0, speed * camera.getSize().x));
             dirOfY = 1;
             if(!Keyboard::isKeyPressed(Keyboard::A) && !Keyboard::isKeyPressed(Keyboard::D))
                 dirOfX = 0;
-            tile++;
             ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::D))
         {
-            b.x += speed;
+            camera.move(Vector2f(speed * camera.getSize().x, 0));
             dirOfX = 1;
             if(!Keyboard::isKeyPressed(Keyboard::W) && !Keyboard::isKeyPressed(Keyboard::S))
                 dirOfY = 0;
-            tile++;
             ispr = true;
         }
-
-
-        if (!(tile % 8 == 1 || tile % 8 == 5) && !ispr)
-            tile++;
 
         if (dirOfX == -1 && dirOfY == 1)
             dir = 0;
@@ -162,21 +154,13 @@ int main()
         if (dirOfX == 1 && dirOfY == -1)
             dir = 7;
 
-        s_human.setTextureRect(IntRect((tile / animslow % 8) * 60, dir * 110, 60, 110));
-
-        for (int y = 0; y < MAP_SIZE; ++y)
-            for (int x = 0; x < MAP_SIZE; ++x)
-            {
-                s_land.setTextureRect(IntRect(m.height_map[x][y], 0, 1, 1));
-                s_land.setPosition(x * 32, y * 32);
-                s_land.setScale(32, 32);
-                mainWindow.draw(s_land);
-            }
+        ch1.draw(mainWindow, &tileset);
+        ch2.draw(mainWindow, &tileset);
 
         for (int s_i = 0; s_i < objects.size(); ++s_i)
             objects[s_i].draw(mainWindow);
-        mainWindow.draw(a.sprite);
-        mainWindow.draw(s_human);
+        a.draw(mainWindow);
+
         mainWindow.display();
     }
 

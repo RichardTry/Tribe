@@ -41,6 +41,8 @@
 		</Compiler>
 		<Unit filename="animation.h" />
 		<Unit filename="cb.bmp" />
+		<Unit filename="chunk.cpp" />
+		<Unit filename="chunk.h" />
 		<Unit filename="dsq.cpp" />
 		<Unit filename="dsq.h" />
 		<Unit filename="main.cpp" />
@@ -49,6 +51,7 @@
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Unit filename="test_noise.h" />
+		<Unit filename="tile.h" />
 		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />

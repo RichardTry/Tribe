@@ -1,12 +1,12 @@
 #ifndef TEST_NOISE_H_INCLUDED
 #define TEST_NOISE_H_INCLUDED
 
-#include "map.h"
+#include "chunk.h"
 #include <math.h>
 
-void fillWithTestNoise(uint8_t (&height_map)[MAP_SIZE][MAP_SIZE])
+void fillWithTestNoise(uint8_t (&height_map)[CHUNK_SIZE][CHUNK_SIZE])
 {
-    for (int i = MAP_MULT - 1; i >= 0; --i)
+    for (int i = 4; i >= 0; --i)
     {
         int prevXDiv = 0, prevYDiv = 0;
         int bias = rand() % 2 * pow(2, i);

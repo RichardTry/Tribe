@@ -2,17 +2,18 @@
 #define OBJECT_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
+using namespace sf;
 #include "animation.h"
 
 struct Object
 {
-    int x;
-    int y;
-    sf::Sprite sprite;
+    Vector2i position;
+    Vector2u visibleSize;
+    IntRect collision;
+    Texture texture;
     Animation animation;
 
-    void draw(sf::RenderWindow& window);
-    void setTexture(sf::Texture& texture);
+    void draw(RenderWindow& window);
 };
 
 #endif // OBJECT_H_INCLUDED

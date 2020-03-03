@@ -1,18 +1,19 @@
 # depslib dependency file v1.0
-1583097190 source:/home/paxom/codeblocks-projects/tribe/main.cpp
+1583227323 source:/home/paxom/codeblocks-projects/tribe/main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
 	<ctime>
 	"map.h"
+	"chunk.h"
 	"object.h"
 	"view.h"
 
-1582570626 source:/home/paxom/codeblocks-projects/tribe/map.cpp
+1583182401 source:/home/paxom/codeblocks-projects/tribe/map.cpp
 	"map.h"
 	"test_noise.h"
 
-1583095445 /home/paxom/codeblocks-projects/tribe/map.h
+1583182255 /home/paxom/codeblocks-projects/tribe/map.h
 	<SFML/Graphics.hpp>
 	<math.h>
 
@@ -25,18 +26,30 @@
 
 1582468110 /home/paxom/codeblocks-projects/tribe/building.h
 
-1582558406 /home/paxom/codeblocks-projects/tribe/object.h
+1583196964 /home/paxom/codeblocks-projects/tribe/object.h
 	<SFML/Graphics.hpp>
 	"animation.h"
 
 1582486606 /home/paxom/codeblocks-projects/tribe/animation.h
 
-1582558596 source:/home/paxom/codeblocks-projects/tribe/object.cpp
+1583197389 source:/home/paxom/codeblocks-projects/tribe/object.cpp
 	"object.h"
 
-1582552611 /home/paxom/codeblocks-projects/tribe/view.h
+1583222028 /home/paxom/codeblocks-projects/tribe/view.h
+	<SFML/System/Vector2.hpp>
 
-1582574324 /home/paxom/codeblocks-projects/tribe/test_noise.h
-	"map.h"
+1583182313 /home/paxom/codeblocks-projects/tribe/test_noise.h
+	"chunk.h"
 	<math.h>
+
+1583222029 /home/paxom/codeblocks-projects/tribe/chunk.h
+	<SFML/Graphics.hpp>
+	<vector>
+	"tile.h"
+	"object.h"
+
+1583182018 /home/paxom/codeblocks-projects/tribe/tile.h
+
+1583227368 source:/home/paxom/codeblocks-projects/tribe/chunk.cpp
+	"chunk.h"
 

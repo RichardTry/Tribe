@@ -6,14 +6,11 @@
 
 using namespace sf;
 
-const int MAP_MULT = 3;
-const int MAP_SIZE = pow(2, MAP_MULT);
+const int MAP_SIZE = 5;
 
 struct Map
 {
-    uint8_t height_map[MAP_SIZE][MAP_SIZE];
-    void generate();
-    void draw(RenderWindow& window);
+
 };
 
 #endif // MAP_H_INCLUDED
