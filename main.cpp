@@ -1,18 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <vector>
-#include <ctime>
-
-#include "map.h"
-#include "chunk.h"
-#include "object.h"
-#include "view.h"
-
-using namespace sf;
-using namespace std;
-
-const int SCREEN_WIDTH = 1120;
-const int SCREEN_HEIGHT = 630;
+#include "main.h"
 
 int main()
 {
@@ -35,7 +21,7 @@ int main()
     b.position.x = 0;
     b.position.y = 0;
 
-    float speed = 0.001;
+    float speed = 0.005;
     int animslow = 3;
     int8_t dirOfX = 0, dirOfY = 1;
     uint8_t dir = 0;
@@ -43,7 +29,7 @@ int main()
     //Тестовый объект-здание с тектурой be64.png
     Object a;
     a.visibleSize = Vector2u(2, 2);
-    a.position = Vector2i(3, 4);
+    a.position = Vector2i(-3, 4);
     Texture t_a;
     if (!t_a.loadFromFile("textures/be64.png"))
         return EXIT_FAILURE;
@@ -65,14 +51,22 @@ int main()
         objects.push_back(o);
     }
 
-    //Объект карты и её первоначальная генерация
-    Chunk ch1, ch2;
-    ch1.position = Vector2u(0, 0);
-    ch2.position = Vector2u(1, 0);
-    //ch.generate();
+    //Тестовый вектор чанков
+    vector<Chunk> vec_world;
+    vec_world.push_back(Chunk(0, 0));
+    vec_world[0].generate();
+
+    //Test chunk real-time render
+    unordered_map<long long, Chunk> world;
+
+    //float x = smoothstep(0.0, 1.0, 0.9);
 
     camera.setSize(16, 9);
     camera.setCenter(0,0);
+
+    View test_camera;
+    test_camera.setSize(160, 90);
+    test_camera.setCenter(0,0);
 
     uint windowWidth = SCREEN_WIDTH, windowHeight = SCREEN_HEIGHT;
 
@@ -98,64 +92,54 @@ int main()
         mainWindow.setView(camera);
         mainWindow.clear(Color(0, 0, 128));
 
-        if(Keyboard::isKeyPressed(Keyboard::Q))
+        if(Keyboard::isKeyPressed(Keyboard::Q) && camera.getSize().y >= 3)
             camera.zoom(0.99);
-        if(Keyboard::isKeyPressed(Keyboard::E))
+        if(Keyboard::isKeyPressed(Keyboard::E) && camera.getSize().y <= 95)
             camera.zoom(1.01);
 
-        bool ispr = false;
         if(Keyboard::isKeyPressed(Keyboard::W))
         {
             camera.move(Vector2f(0, -speed * camera.getSize().x));
-            dirOfY = -1;
-            if(!Keyboard::isKeyPressed(Keyboard::A) && !Keyboard::isKeyPressed(Keyboard::D))
-                dirOfX = 0;
-            ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::A))
         {
             camera.move(Vector2f(-speed * camera.getSize().x, 0));
-            dirOfX = -1;
-            if(!Keyboard::isKeyPressed(Keyboard::W) && !Keyboard::isKeyPressed(Keyboard::S))
-                dirOfY = 0;
-            ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::S))
         {
             camera.move(Vector2f(0, speed * camera.getSize().x));
-            dirOfY = 1;
-            if(!Keyboard::isKeyPressed(Keyboard::A) && !Keyboard::isKeyPressed(Keyboard::D))
-                dirOfX = 0;
-            ispr = true;
         }
         if(Keyboard::isKeyPressed(Keyboard::D))
         {
             camera.move(Vector2f(speed * camera.getSize().x, 0));
-            dirOfX = 1;
-            if(!Keyboard::isKeyPressed(Keyboard::W) && !Keyboard::isKeyPressed(Keyboard::S))
-                dirOfY = 0;
-            ispr = true;
         }
 
-        if (dirOfX == -1 && dirOfY == 1)
-            dir = 0;
-        if (dirOfX == 0 && dirOfY == 1)
-            dir = 1;
-        if (dirOfX == 1 && dirOfY == 1)
-            dir = 2;
-        if (dirOfX == -1 && dirOfY == 0)
-            dir = 3;
-        if (dirOfX == 1 && dirOfY == 0)
-            dir = 4;
-        if (dirOfX == -1 && dirOfY == -1)
-            dir = 5;
-        if (dirOfX == 0 && dirOfY == -1)
-            dir = 6;
-        if (dirOfX == 1 && dirOfY == -1)
-            dir = 7;
+        float cameraLeft = camera.getCenter().x - camera.getSize().x / 2;
+        float cameraRight = camera.getCenter().x + camera.getSize().x / 2;
+        float cameraTop = camera.getCenter().y - camera.getSize().y / 2;
+        float cameraBottom = camera.getCenter().y + camera.getSize().y / 2;
 
-        ch1.draw(mainWindow, &tileset);
-        ch2.draw(mainWindow, &tileset);
+        for (int y = int(cameraTop) / int(CHUNK_SIZE) - (cameraTop < 0); y <= int(cameraBottom) / int(CHUNK_SIZE) - (cameraBottom < 0); ++y)
+        {
+            for (int x = int(cameraLeft) / int(CHUNK_SIZE) - (cameraLeft < 0); x <= int(cameraRight) / int(CHUNK_SIZE) - (cameraRight < 0); ++x)
+            {
+                long long key = (((long long)x) << 32) + (long long)y;
+                auto it = world.find(key);
+                if (it != world.end())
+                {
+                    it->second.draw(mainWindow, &tileset);;
+                }
+                else
+                {
+                    world[key] = Chunk(x, y);
+                    cout << "Created (" << x << "; " << y << ") chunk!\n";
+                    //world[key].generate();
+                }
+            }
+        }
+
+        for (int ch_i = 0; ch_i < vec_world.size(); ++ch_i)
+            vec_world[ch_i].draw(mainWindow, &tileset);
 
         for (int s_i = 0; s_i < objects.size(); ++s_i)
             objects[s_i].draw(mainWindow);

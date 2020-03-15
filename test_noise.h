@@ -23,4 +23,9 @@ void fillWithTestNoise(uint8_t (&height_map)[CHUNK_SIZE][CHUNK_SIZE])
     }
 }
 
+float smoothstep (float x)
+{
+
+}
+
 #endif // TEST_NOISE_H_INCLUDED
