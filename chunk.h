@@ -5,12 +5,13 @@
 using namespace sf;
 #include <algorithm>
 #include <vector>
+#include <unordered_map>
 #include "tile.h"
 #include "object.h"
 
 const unsigned int CHUNK_SIZE = 32;
 
-//const Texture tileset;
+extern Texture tileset;
 
 struct Chunk
 {
@@ -19,8 +20,10 @@ struct Chunk
     std::vector<Object> objects;
     Chunk();
     Chunk(int x, int y);
-    void draw(RenderWindow& window, Texture* tileset);
+    void draw(RenderWindow& window);
     void generate();
 };
+
+extern std::unordered_map<long long, Chunk> world;
 
 #endif // CHUNK_H_INCLUDED

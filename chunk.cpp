@@ -1,5 +1,9 @@
 #include "chunk.h"
 
+Texture tileset;
+
+std::unordered_map<long long, Chunk> world;
+
 Chunk::Chunk()
 {
 }
@@ -16,10 +20,10 @@ Chunk::Chunk(int x, int y)
         }
 }
 
-void Chunk::draw(RenderWindow& window, Texture* tileset)
+void Chunk::draw(RenderWindow& window)
 {
     RectangleShape tile(Vector2f(1, 1));
-    tile.setTexture(tileset);
+    tile.setTexture(&tileset);
     for (uint8_t y = 0; y < CHUNK_SIZE; ++y)
         for (uint8_t x = 0; x < CHUNK_SIZE; ++x)
         {

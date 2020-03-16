@@ -5,21 +5,9 @@ int main()
     //Создаётся главное окно
     RenderWindow mainWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tribe");
 
-
-    //Тектура тестового персонажа
-    Texture t_human;
-    if (!t_human.loadFromFile("textures/8-direction-movement.png"))
-        return EXIT_FAILURE;
-
     //Текстура тайлов земли
-    Texture tileset;
     if (!tileset.loadFromFile("textures/tileset.png"))
         return EXIT_FAILURE;
-
-    //Игровой объект тестового персонажа
-    Object b;
-    b.position.x = 0;
-    b.position.y = 0;
 
     float speed = 0.005;
     int animslow = 3;
@@ -51,13 +39,8 @@ int main()
         objects.push_back(o);
     }
 
-    //Тестовый вектор чанков
-    vector<Chunk> vec_world;
-    vec_world.push_back(Chunk(0, 0));
-    vec_world[0].generate();
-
     //Test chunk real-time render
-    unordered_map<long long, Chunk> world;
+    //unordered_map<long long, Chunk> world;
 
     //float x = smoothstep(0.0, 1.0, 0.9);
 
@@ -65,7 +48,7 @@ int main()
     camera.setCenter(0,0);
 
     View test_camera;
-    test_camera.setSize(160, 90);
+    test_camera.setSize(1600, 900);
     test_camera.setCenter(0,0);
 
     uint windowWidth = SCREEN_WIDTH, windowHeight = SCREEN_HEIGHT;
@@ -127,19 +110,15 @@ int main()
                 auto it = world.find(key);
                 if (it != world.end())
                 {
-                    it->second.draw(mainWindow, &tileset);;
+                    it->second.draw(mainWindow);;
                 }
                 else
                 {
                     world[key] = Chunk(x, y);
-                    cout << "Created (" << x << "; " << y << ") chunk!\n";
                     //world[key].generate();
                 }
             }
         }
-
-        for (int ch_i = 0; ch_i < vec_world.size(); ++ch_i)
-            vec_world[ch_i].draw(mainWindow, &tileset);
 
         for (int s_i = 0; s_i < objects.size(); ++s_i)
             objects[s_i].draw(mainWindow);

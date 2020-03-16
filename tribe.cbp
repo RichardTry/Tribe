@@ -46,6 +46,7 @@
 		<Unit filename="dsq.cpp" />
 		<Unit filename="dsq.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
 		<Unit filename="map.cpp" />
 		<Unit filename="map.h" />
 		<Unit filename="object.cpp" />
