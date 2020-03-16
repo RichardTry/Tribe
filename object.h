@@ -13,6 +13,7 @@ struct Object
     Texture texture;
     Animation animation;
 
+    Object();
     void draw(RenderWindow& window);
 };
 

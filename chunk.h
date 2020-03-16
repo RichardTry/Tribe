@@ -16,6 +16,9 @@ extern Texture tileset;
 struct Chunk
 {
     Vector2i position;
+    Vector2i perlinVector;
+    int perlinTest;
+    bool generated;
     Tile tiles[CHUNK_SIZE][CHUNK_SIZE];
     std::vector<Object> objects;
     Chunk();

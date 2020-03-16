@@ -9,7 +9,8 @@ int main()
     if (!tileset.loadFromFile("textures/tileset.png"))
         return EXIT_FAILURE;
 
-    float speed = 0.005;
+    float speed = 1;
+    float zoom_speed = 0.1;
     int animslow = 3;
     int8_t dirOfX = 0, dirOfY = 1;
     uint8_t dir = 0;
@@ -26,7 +27,6 @@ int main()
     //Вектор всех объектов карты
     vector<Object> objects;
     objects.push_back(a);
-    objects.push_back(b);
 
     //Создание и рандомное размещение тестовых объектов-зданий
     srand(time(nullptr));
@@ -39,17 +39,10 @@ int main()
         objects.push_back(o);
     }
 
-    //Test chunk real-time render
-    //unordered_map<long long, Chunk> world;
-
-    //float x = smoothstep(0.0, 1.0, 0.9);
+    Clock clock;
 
     camera.setSize(16, 9);
     camera.setCenter(0,0);
-
-    View test_camera;
-    test_camera.setSize(1600, 900);
-    test_camera.setCenter(0,0);
 
     uint windowWidth = SCREEN_WIDTH, windowHeight = SCREEN_HEIGHT;
 
@@ -69,32 +62,39 @@ int main()
                     windowWidth = event.size.width;
                     windowHeight = event.size.height;
                     break;
+
+                case Event::MouseWheelMoved:
+                    if(event.mouseWheel.delta == 1 && camera.getSize().y * (1 - zoom_speed) >= 3)
+                        camera.zoom(1 - zoom_speed);
+                    if(event.mouseWheel.delta == -1 && camera.getSize().y * (1 + zoom_speed) <= 63)
+                        camera.zoom(1 + zoom_speed);
+                    break;
+
             }
         }
 
-        mainWindow.setView(camera);
-        mainWindow.clear(Color(0, 0, 128));
+        float time = clock.getElapsedTime().asSeconds();
+        time /= 1200;
 
-        if(Keyboard::isKeyPressed(Keyboard::Q) && camera.getSize().y >= 3)
-            camera.zoom(0.99);
-        if(Keyboard::isKeyPressed(Keyboard::E) && camera.getSize().y <= 95)
-            camera.zoom(1.01);
+        mainWindow.setView(camera);
+
+        mainWindow.clear(Color(0, 0, 128));
 
         if(Keyboard::isKeyPressed(Keyboard::W))
         {
-            camera.move(Vector2f(0, -speed * camera.getSize().x));
+            camera.move(Vector2f(0, -speed * time * camera.getSize().x));
         }
         if(Keyboard::isKeyPressed(Keyboard::A))
         {
-            camera.move(Vector2f(-speed * camera.getSize().x, 0));
+            camera.move(Vector2f(-speed * time * camera.getSize().x, 0));
         }
         if(Keyboard::isKeyPressed(Keyboard::S))
         {
-            camera.move(Vector2f(0, speed * camera.getSize().x));
+            camera.move(Vector2f(0, speed * time * camera.getSize().x));
         }
         if(Keyboard::isKeyPressed(Keyboard::D))
         {
-            camera.move(Vector2f(speed * camera.getSize().x, 0));
+            camera.move(Vector2f(speed * time * camera.getSize().x, 0));
         }
 
         float cameraLeft = camera.getCenter().x - camera.getSize().x / 2;
@@ -110,12 +110,15 @@ int main()
                 auto it = world.find(key);
                 if (it != world.end())
                 {
-                    it->second.draw(mainWindow);;
+                    if (!it->second.generated)
+                        it->second.generate();
+                    it->second.draw(mainWindow);
                 }
                 else
                 {
                     world[key] = Chunk(x, y);
-                    //world[key].generate();
+                    world[key].generate();
+                    cout << x << "; " << y << " generated!\n";
                 }
             }
         }
