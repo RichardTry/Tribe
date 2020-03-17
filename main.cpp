@@ -11,43 +11,30 @@ int main()
 
     float speed = 1;
     float zoom_speed = 0.1;
-    int animslow = 3;
-    int8_t dirOfX = 0, dirOfY = 1;
-    uint8_t dir = 0;
+
+    float dX, dY;
 
     //Тестовый объект-здание с тектурой be64.png
-    Object a;
-    a.visibleSize = Vector2u(2, 2);
-    a.position = Vector2i(-3, 4);
+    //ObjectContent objlib[1];
+    Init();
     Texture t_a;
     if (!t_a.loadFromFile("textures/be64.png"))
         return EXIT_FAILURE;
-    a.texture = t_a;
-
-    //Вектор всех объектов карты
-    vector<Object> objects;
-    objects.push_back(a);
-
-    //Создание и рандомное размещение тестовых объектов-зданий
-    srand(time(nullptr));
-    for (int i = 0; i < 10; ++i)
-    {
-        Object o;
-        o.visibleSize = Vector2u(2, 2);
-        o.position = Vector2i(rand() % 50, rand() % 50);
-        o.texture = t_a;
-        objects.push_back(o);
-    }
+    objlib[0].texture = t_a;
 
     Clock clock;
 
-    camera.setSize(16, 9);
-    camera.setCenter(0,0);
-
     uint windowWidth = SCREEN_WIDTH, windowHeight = SCREEN_HEIGHT;
+
+    Object* o_selected;
 
     while (mainWindow.isOpen())
     {
+        bool isClicked = false;
+        Vector2i pixel = Mouse::getPosition(mainWindow);
+        Vector2f pos = mainWindow.mapPixelToCoords(pixel);
+        //cout << Vector2i(pos).x << ", " << Vector2i(pos).y << endl;
+
         Event event;
         while (mainWindow.pollEvent(event))
         {
@@ -64,10 +51,14 @@ int main()
                     break;
 
                 case Event::MouseWheelMoved:
-                    if(event.mouseWheel.delta == 1 && camera.getSize().y * (1 - zoom_speed) >= 3)
+                    if (event.mouseWheel.delta == 1 && camera.getSize().y * (1 - zoom_speed) >= 3)
                         camera.zoom(1 - zoom_speed);
-                    if(event.mouseWheel.delta == -1 && camera.getSize().y * (1 + zoom_speed) <= 63)
+                    if (event.mouseWheel.delta == -1 && camera.getSize().y * (1 + zoom_speed) <= 63)
                         camera.zoom(1 + zoom_speed);
+                    break;
+                case Event::MouseButtonPressed:
+                    if (event.key.code == Mouse::Left)
+                        isClicked = true;
                     break;
 
             }
@@ -112,20 +103,35 @@ int main()
                 {
                     if (!it->second.generated)
                         it->second.generate();
-                    it->second.draw(mainWindow);
                 }
                 else
                 {
                     world[key] = Chunk(x, y);
                     world[key].generate();
-                    cout << x << "; " << y << " generated!\n";
+                }
+                world[key].draw(mainWindow);
+            }
+        }
+
+        for (int y = int(cameraTop) / int(CHUNK_SIZE) - (cameraTop < 0); y <= int(cameraBottom) / int(CHUNK_SIZE) - (cameraBottom < 0); ++y)
+        {
+            for (int x = int(cameraLeft) / int(CHUNK_SIZE) - (cameraLeft < 0); x <= int(cameraRight) / int(CHUNK_SIZE) - (cameraRight < 0); ++x)
+            {
+                long long key = (((long long)x) << 32) + (long long)y;
+                for (int o_i = 0; o_i < world[key].objects.size(); ++o_i)
+                {
+                    Object* curobj = &world[key].objects[o_i];
+                    if (isClicked && IntRect(curobj->position.x, curobj->position.y, objlib[curobj->contentID].collision.x, objlib[curobj->contentID].collision.y).contains(Vector2i(pos)))
+                    {
+                        o_selected = curobj;
+                        cout << "yes!\n";
+                    }
+                    curobj->draw(mainWindow);
                 }
             }
         }
 
-        for (int s_i = 0; s_i < objects.size(); ++s_i)
-            objects[s_i].draw(mainWindow);
-        a.draw(mainWindow);
+        //if (isClicked) o_selected->position = Vector2i(pos);
 
         mainWindow.display();
     }

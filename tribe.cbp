@@ -45,14 +45,17 @@
 		<Unit filename="chunk.h" />
 		<Unit filename="dsq.cpp" />
 		<Unit filename="dsq.h" />
+		<Unit filename="init.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Unit filename="map.cpp" />
 		<Unit filename="map.h" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
+		<Unit filename="object_content.h" />
 		<Unit filename="test_noise.h" />
 		<Unit filename="tile.h" />
+		<Unit filename="unit.h" />
 		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />

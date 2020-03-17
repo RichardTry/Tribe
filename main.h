@@ -13,11 +13,9 @@
 #include "chunk.h"
 #include "object.h"
 #include "view.h"
+#include "init.h"
 
 using namespace sf;
 using namespace std;
-
-const int SCREEN_WIDTH = 1120;
-const int SCREEN_HEIGHT = 630;
 
 #endif // MAIN_H_INCLUDED

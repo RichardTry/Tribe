@@ -76,8 +76,14 @@ void Chunk::generate()
             uint8_t xTop = perlinTest + tx * (perlinRight - perlinTest);
             uint8_t xBot = perlinBottom + tx * (perlinBottomRight - perlinBottom);
             int res = xTop + ty * (xBot - xTop);
+            if (x * y == 0) res = 8;
             tiles[x][y].biome = res;
         }
+
+    Object o;
+    o.contentID = 0;
+    o.position = Vector2i(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
+    objects.push_back(o);
 
     generated = true;
 }

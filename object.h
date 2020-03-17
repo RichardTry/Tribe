@@ -3,15 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 using namespace sf;
-#include "animation.h"
 
 struct Object
 {
     Vector2i position;
-    Vector2u visibleSize;
-    IntRect collision;
-    Texture texture;
-    Animation animation;
+    unsigned int contentID;
 
     Object();
     void draw(RenderWindow& window);
