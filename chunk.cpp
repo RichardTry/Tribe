@@ -17,6 +17,11 @@ Chunk::Chunk(int x, int y)
     generated = false;
 }
 
+long long coordsToKey(Vector2i coords)
+{
+    return (((long long)coords.x) << 32) + (long long)coords.y;
+}
+
 void Chunk::draw(RenderWindow& window)
 {
     RectangleShape tile(Vector2f(1, 1));

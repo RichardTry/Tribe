@@ -12,13 +12,11 @@ int main()
     float speed = 1;
     float zoom_speed = 0.1;
 
-    float dX, dY;
-
     //Тестовый объект-здание с тектурой be64.png
     //ObjectContent objlib[1];
     Init();
     Texture t_a;
-    if (!t_a.loadFromFile("textures/be64.png"))
+    if (!t_a.loadFromFile("textures/texture-pack.png"))
         return EXIT_FAILURE;
     objlib[0].texture = t_a;
 
@@ -33,7 +31,7 @@ int main()
         bool isClicked = false;
         Vector2i pixel = Mouse::getPosition(mainWindow);
         Vector2f pos = mainWindow.mapPixelToCoords(pixel);
-        //cout << Vector2i(pos).x << ", " << Vector2i(pos).y << endl;
+        Vector2i mappos = Vector2i(floor(pos.x), floor(pos.y));
 
         Event event;
         while (mainWindow.pollEvent(event))
@@ -93,9 +91,9 @@ int main()
         float cameraTop = camera.getCenter().y - camera.getSize().y / 2;
         float cameraBottom = camera.getCenter().y + camera.getSize().y / 2;
 
-        for (int y = int(cameraTop) / int(CHUNK_SIZE) - (cameraTop < 0); y <= int(cameraBottom) / int(CHUNK_SIZE) - (cameraBottom < 0); ++y)
+        for (int y = floor(cameraTop / int(CHUNK_SIZE)); y <= floor(cameraBottom / int(CHUNK_SIZE)); ++y)
         {
-            for (int x = int(cameraLeft) / int(CHUNK_SIZE) - (cameraLeft < 0); x <= int(cameraRight) / int(CHUNK_SIZE) - (cameraRight < 0); ++x)
+            for (int x = floor(cameraLeft / int(CHUNK_SIZE)); x <= floor(cameraRight / int(CHUNK_SIZE)); ++x)
             {
                 long long key = (((long long)x) << 32) + (long long)y;
                 auto it = world.find(key);
@@ -117,11 +115,11 @@ int main()
         {
             for (int x = int(cameraLeft) / int(CHUNK_SIZE) - (cameraLeft < 0); x <= int(cameraRight) / int(CHUNK_SIZE) - (cameraRight < 0); ++x)
             {
-                long long key = (((long long)x) << 32) + (long long)y;
+                long long key = coordsToKey(Vector2i(x, y));
                 for (int o_i = 0; o_i < world[key].objects.size(); ++o_i)
                 {
                     Object* curobj = &world[key].objects[o_i];
-                    if (isClicked && IntRect(curobj->position.x, curobj->position.y, objlib[curobj->contentID].collision.x, objlib[curobj->contentID].collision.y).contains(Vector2i(pos)))
+                    if (isClicked && IntRect(curobj->position.x, curobj->position.y, objlib[curobj->contentID].collision.x, objlib[curobj->contentID].collision.y).contains(mappos))
                     {
                         o_selected = curobj;
                         cout << "yes!\n";
@@ -131,7 +129,7 @@ int main()
             }
         }
 
-        //if (isClicked) o_selected->position = Vector2i(pos);
+        //if (isClicked) cout << floor(pos.x) << ", " << floor(pos.y) << endl;
 
         mainWindow.display();
     }

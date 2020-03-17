@@ -27,6 +27,8 @@ struct Chunk
     void generate();
 };
 
+long long coordsToKey(Vector2i coords);
+
 extern std::unordered_map<long long, Chunk> world;
 
 #endif // CHUNK_H_INCLUDED
