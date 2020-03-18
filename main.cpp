@@ -16,6 +16,10 @@ int main()
     //ObjectContent objlib[1];
     Init();
 
+    Texture selection_t;
+    if (!selection_t.loadFromFile("textures/selection.png"))
+        return EXIT_FAILURE;
+
     Texture t_a;
     if (!t_a.loadFromFile("textures/treesprite.png"))
         return EXIT_FAILURE;
@@ -125,10 +129,25 @@ int main()
                 for (int o_i = 0; o_i < world[key].objects.size(); ++o_i)
                 {
                     Object* curobj = &world[key].objects[o_i];
-                    if (isClicked && IntRect(curobj->position.x, curobj->position.y, objlib[curobj->contentID].collision.x, objlib[curobj->contentID].collision.y).contains(mappos))
+                    if (IntRect(curobj->position.x, curobj->position.y, objlib[curobj->contentID].collision.x, objlib[curobj->contentID].collision.y).contains(mappos))
                     {
                         o_selected = curobj;
-                        cout << "yes!\n";
+                        RectangleShape sel(Vector2f(1, 1));
+                        sel.setTexture(&selection_t);
+                        //
+                        sel.setPosition(Vector2f(curobj->position));
+                        sel.setTextureRect(IntRect(0, 0, 32, 32));
+                        mainWindow.draw(sel);
+                        sel.setPosition(Vector2f(curobj->position.x, curobj->position.y + int(objlib[curobj->contentID].collision.y) - 1));
+                        sel.setTextureRect(IntRect(0, 32, 32, 32));
+                        mainWindow.draw(sel);
+                        sel.setPosition(Vector2f(curobj->position.x + int(objlib[curobj->contentID].collision.x) - 1, curobj->position.y + int(objlib[curobj->contentID].collision.y) - 1));
+                        sel.setTextureRect(IntRect(32, 32, 32, 32));
+                        mainWindow.draw(sel);
+                        sel.setPosition(Vector2f(curobj->position.x + int(objlib[curobj->contentID].collision.x) - 1, curobj->position.y));
+                        sel.setTextureRect(IntRect(32, 0, 32, 32));
+                        mainWindow.draw(sel);
+                        //
                     }
                     curobj->draw(mainWindow);
                 }

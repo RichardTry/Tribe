@@ -82,7 +82,7 @@ void Chunk::generate()
             uint8_t xBot = perlinBottom + tx * (perlinBottomRight - perlinBottom);
             int res = xTop + ty * (xBot - xTop);
             if (x * y == 0) res = 8;
-            res = rand() % 8;
+            //res = rand() % 8;
             tiles[x][y].biome = res;
         }
 

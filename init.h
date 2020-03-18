@@ -18,7 +18,7 @@ void Init()
     srand(time(nullptr));
 
     objlib[0].spriteSize = Vector2f(2, 3);
-    objlib[0].collision = Vector2u(2, 3);
+    objlib[0].collision = Vector2u(1, 1);
     objlib[0].spriteOrigin = Vector2f(0.5, 2);
 
     unitlib[0].spriteSize = Vector2f(1, 1);

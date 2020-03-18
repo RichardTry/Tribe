@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1584481760 source:/home/paxom/codeblocks-projects/tribe/main.cpp
+1584519756 source:/home/paxom/codeblocks-projects/tribe/main.cpp
 	"main.h"
 
 1583182401 source:/home/paxom/codeblocks-projects/tribe/map.cpp
@@ -46,7 +46,7 @@
 
 1584481387 /home/paxom/codeblocks-projects/tribe/tile.h
 
-1584481354 source:/home/paxom/codeblocks-projects/tribe/chunk.cpp
+1584519557 source:/home/paxom/codeblocks-projects/tribe/chunk.cpp
 	"chunk.h"
 	<iostream>
 
@@ -63,11 +63,11 @@
 	"view.h"
 	"init.h"
 
-1584480864 /home/paxom/codeblocks-projects/tribe/object_content.h
+1584517332 /home/paxom/codeblocks-projects/tribe/object_content.h
 	<SFML/Graphics.hpp>
 	"animation.h"
 
-1584481868 /home/paxom/codeblocks-projects/tribe/init.h
+1584519776 /home/paxom/codeblocks-projects/tribe/init.h
 	"object_content.h"
 	"unit_content.h"
 	<SFML/Graphics.hpp>
