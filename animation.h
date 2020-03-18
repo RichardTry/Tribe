@@ -5,7 +5,6 @@ struct Animation
 {
     bool play;
     double speed;
-
 };
 
 #endif // ANIMATION_H_INCLUDED

@@ -8,6 +8,7 @@ using namespace sf;
 #include <unordered_map>
 #include "tile.h"
 #include "object.h"
+#include "unit.h"
 
 const unsigned int CHUNK_SIZE = 32;
 
@@ -21,6 +22,7 @@ struct Chunk
     bool generated;
     Tile tiles[CHUNK_SIZE][CHUNK_SIZE];
     std::vector<Object> objects;
+    std::vector<Unit> units;
     Chunk();
     Chunk(int x, int y);
     void draw(RenderWindow& window);

@@ -15,10 +15,16 @@ int main()
     //Тестовый объект-здание с тектурой be64.png
     //ObjectContent objlib[1];
     Init();
+
     Texture t_a;
-    if (!t_a.loadFromFile("textures/texture-pack.png"))
+    if (!t_a.loadFromFile("textures/treesprite.png"))
         return EXIT_FAILURE;
     objlib[0].texture = t_a;
+
+    Texture u_a;
+    if (!t_a.loadFromFile("textures/unit.png"))
+        return EXIT_FAILURE;
+    unitlib[0].texture = u_a;
 
     Clock clock;
 

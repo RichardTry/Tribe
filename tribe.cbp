@@ -55,7 +55,9 @@
 		<Unit filename="object_content.h" />
 		<Unit filename="test_noise.h" />
 		<Unit filename="tile.h" />
+		<Unit filename="unit.cpp" />
 		<Unit filename="unit.h" />
+		<Unit filename="unit_content.h" />
 		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />

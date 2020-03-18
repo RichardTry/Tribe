@@ -30,7 +30,7 @@ void Chunk::draw(RenderWindow& window)
         for (uint8_t x = 0; x < CHUNK_SIZE; ++x)
         {
             tile.setPosition(Vector2f(position.x * int(CHUNK_SIZE) + x, position.y * int(CHUNK_SIZE) + y));
-            tile.setTextureRect(IntRect(32 * tiles[x][y].biome, 0, 32, 32));
+            tile.setTextureRect(IntRect(TILE_TEXTURE_SIZE * tiles[x][y].biome, 0, TILE_TEXTURE_SIZE, TILE_TEXTURE_SIZE));
             window.draw(tile);
         }
 }
@@ -82,6 +82,7 @@ void Chunk::generate()
             uint8_t xBot = perlinBottom + tx * (perlinBottomRight - perlinBottom);
             int res = xTop + ty * (xBot - xTop);
             if (x * y == 0) res = 8;
+            res = rand() % 8;
             tiles[x][y].biome = res;
         }
 
@@ -89,6 +90,11 @@ void Chunk::generate()
     o.contentID = 0;
     o.position = Vector2i(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
     objects.push_back(o);
+
+    Unit u;
+    u.contentID = 0;
+    u.position = Vector2f(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
+    units.push_back(u);
 
     generated = true;
 }

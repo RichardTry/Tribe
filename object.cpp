@@ -6,8 +6,9 @@ Object::Object()
 
 void Object::draw(RenderWindow& window)
 {
-    RectangleShape object(Vector2f(objlib[contentID].visibleSize.x, objlib[contentID].visibleSize.y));
+    RectangleShape object(objlib[contentID].spriteSize);
     object.setTexture(&objlib[contentID].texture);
+    object.setOrigin(objlib[contentID].spriteOrigin);
     object.setPosition(position.x, position.y);
     window.draw(object);
 }

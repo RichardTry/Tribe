@@ -6,8 +6,10 @@
 
 struct ObjectContent
 {
-    Vector2u visibleSize;
+    Vector2f spriteSize;
+    Vector2f spriteOrigin;
     Vector2u collision;
+    Vector2u collisionOrigin;
     Texture texture;
     Animation animation;
 };
