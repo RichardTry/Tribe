@@ -2,10 +2,11 @@
 #define GAMESTATE_H
 
 #include "state.h"
+#include "chunk.h"
 
 class GameState : public State
 {
-    private:
+    protected:
 
 
     public:

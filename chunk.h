@@ -14,8 +14,9 @@ const unsigned int CHUNK_SIZE = 32;
 
 extern Texture tileset;
 
-struct Chunk
+class Chunk
 {
+    public:
     Vector2i position;
     Vector2i perlinVector;
     int perlinTest;
