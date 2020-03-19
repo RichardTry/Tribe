@@ -1,7 +1,7 @@
 #ifndef TILE_H_INCLUDED
 #define TILE_H_INCLUDED
 
-const unsigned int TILE_TEXTURE_SIZE = 32;
+const unsigned int TILE_TEXTURE_SIZE = 256;
 
 struct Tile
 {

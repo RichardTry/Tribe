@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1584519756 source:/home/paxom/codeblocks-projects/tribe/main.cpp
+1584611351 source:/home/paxom/codeblocks-projects/tribe/main.cpp
 	"main.h"
+	"game.h"
 
 1583182401 source:/home/paxom/codeblocks-projects/tribe/map.cpp
 	"map.h"
@@ -44,9 +45,9 @@
 	"object.h"
 	"unit.h"
 
-1584481387 /home/paxom/codeblocks-projects/tribe/tile.h
+1584528059 /home/paxom/codeblocks-projects/tribe/tile.h
 
-1584519557 source:/home/paxom/codeblocks-projects/tribe/chunk.cpp
+1584563979 source:/home/paxom/codeblocks-projects/tribe/chunk.cpp
 	"chunk.h"
 	<iostream>
 
@@ -63,7 +64,7 @@
 	"view.h"
 	"init.h"
 
-1584517332 /home/paxom/codeblocks-projects/tribe/object_content.h
+1584528554 /home/paxom/codeblocks-projects/tribe/object_content.h
 	<SFML/Graphics.hpp>
 	"animation.h"
 
@@ -81,4 +82,25 @@
 1584480927 source:/home/paxom/codeblocks-projects/tribe/unit.cpp
 	"unit.h"
 	"unit_content.h"
+
+1584611509 source:/home/paxom/codeblocks-projects/tribe/game.cpp
+	"game.h"
+
+1584611980 /home/paxom/codeblocks-projects/tribe/game.h
+	"state.h"
+
+1584612599 /home/paxom/codeblocks-projects/tribe/state.h
+	<vector>
+	<ctime>
+	<cstdlib>
+	<fstream>
+	<sstream>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+
+1584611806 source:/home/paxom/codeblocks-projects/tribe/state.cpp
+	"state.h"
 

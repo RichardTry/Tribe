@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
@@ -27,6 +28,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -45,6 +47,8 @@
 		<Unit filename="chunk.h" />
 		<Unit filename="dsq.cpp" />
 		<Unit filename="dsq.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
 		<Unit filename="init.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
@@ -53,6 +57,8 @@
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Unit filename="object_content.h" />
+		<Unit filename="state.cpp" />
+		<Unit filename="state.h" />
 		<Unit filename="test_noise.h" />
 		<Unit filename="tile.h" />
 		<Unit filename="unit.cpp" />

@@ -1,12 +1,19 @@
 #include "main.h"
+#include "game.h"
 
 int main()
 {
+
+    Game game;
+    game.run();
+
+    /*
+
     //Создаётся главное окно
     RenderWindow mainWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tribe");
 
     //Текстура тайлов земли
-    if (!tileset.loadFromFile("textures/tileset.png"))
+    if (!tileset.loadFromFile("textures/tileset-hd.png"))
         return EXIT_FAILURE;
 
     float speed = 1;
@@ -15,6 +22,8 @@ int main()
     //Тестовый объект-здание с тектурой be64.png
     //ObjectContent objlib[1];
     Init();
+
+    vector<int> arofvec [10];
 
     Texture selection_t;
     if (!selection_t.loadFromFile("textures/selection.png"))
@@ -158,6 +167,7 @@ int main()
 
         mainWindow.display();
     }
+    */
 
     return EXIT_SUCCESS;
 }

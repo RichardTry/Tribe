@@ -40,9 +40,9 @@ void Chunk::generate()
     perlinVector.x = rand() % 65 - 32;
     perlinVector.y = rand() % 65 - 32;
 
-    long long keyRight = (((long long)(position.x + 1)) << 32) + (long long)position.y;
-    long long keyBottom = (((long long)position.x) << 32) + (long long)(position.y + 1);
-    long long keyBottomRight = (((long long)(position.x + 1)) << 32) + (long long)(position.y + 1);
+    long long keyRight = coordsToKey(Vector2i(position.x + 1, position.y));
+    long long keyBottom = coordsToKey(Vector2i(position.x, position.y + 1));
+    long long keyBottomRight = coordsToKey(Vector2i(position.x + 1, position.y + 1));
 
     int perlinRight, perlinBottom, perlinBottomRight;
 
@@ -81,15 +81,15 @@ void Chunk::generate()
             uint8_t xTop = perlinTest + tx * (perlinRight - perlinTest);
             uint8_t xBot = perlinBottom + tx * (perlinBottomRight - perlinBottom);
             int res = xTop + ty * (xBot - xTop);
-            if (x * y == 0) res = 8;
-            //res = rand() % 8;
             tiles[x][y].biome = res;
         }
 
+    for (int i = 0; i < 50; ++i){
     Object o;
     o.contentID = 0;
     o.position = Vector2i(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
     objects.push_back(o);
+    }
 
     Unit u;
     u.contentID = 0;
