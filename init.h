@@ -10,8 +10,8 @@ const int SCREEN_HEIGHT = 630;
 
 //Clock clock;
 
-ObjectContent objlib[1];
-UnitContent unitlib[1];
+//ObjectContent objlib[1];
+//UnitContent unitlib[1];
 
 void Init()
 {

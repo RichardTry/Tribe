@@ -11,7 +11,7 @@
 
 const unsigned int CHUNK_SIZE = 32;
 
-extern Texture tileset;
+extern sf::Texture tileset;
 
 class Chunk
 {
@@ -27,11 +27,11 @@ class Chunk
     Chunk();
     Chunk(int x, int y);
 
-    void update(const float& dt);
-    void render(sf::RenderTarget& target);
+    void update(const float & dt);
+    void render(sf::RenderTarget* target);
     void generate(std::unordered_map<long long, Chunk> & world);
 };
 
-long long coordsToKey(Vector2i coords);
+long long coordsToKey(sf::Vector2i coords);
 
 #endif // CHUNK_H_INCLUDED

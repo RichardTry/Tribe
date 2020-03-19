@@ -49,8 +49,6 @@
 		<Unit filename="dsq.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
-		<Unit filename="gamestate.cpp" />
-		<Unit filename="gamestate.h" />
 		<Unit filename="init.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
@@ -59,8 +57,10 @@
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Unit filename="object_content.h" />
-		<Unit filename="state.cpp" />
-		<Unit filename="state.h" />
+		<Unit filename="states/gamestate.cpp" />
+		<Unit filename="states/gamestate.h" />
+		<Unit filename="states/state.cpp" />
+		<Unit filename="states/state.h" />
 		<Unit filename="test_noise.h" />
 		<Unit filename="tile.h" />
 		<Unit filename="unit.cpp" />

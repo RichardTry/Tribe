@@ -5,13 +5,11 @@
 
 struct UnitContent
 {
-    Vector2f spriteSize;
-    Vector2f spriteOrigin;
-    Vector2f collision;
-    Vector2f collisionOrigin;
-    Texture texture;
+    sf::Vector2f spriteSize;
+    sf::Vector2f spriteOrigin;
+    sf::Vector2f collision;
+    sf::Vector2f collisionOrigin;
+    sf::Texture texture;
 };
-
-extern UnitContent unitlib[1];
 
 #endif // UNIT_CONTENT_H_INCLUDED

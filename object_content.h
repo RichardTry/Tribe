@@ -6,14 +6,12 @@
 
 struct ObjectContent
 {
-    Vector2f spriteSize;
-    Vector2f spriteOrigin;
-    Vector2u collision;
+    sf::Vector2f spriteSize;
+    sf::Vector2f spriteOrigin;
+    sf::Vector2u collision;
     //Vector2u collisionOrigin;
-    Texture texture;
+    sf::Texture texture;
     Animation animation;
 };
-
-extern ObjectContent objlib[1];
 
 #endif // OBJECT_CONTENT_H_INCLUDED

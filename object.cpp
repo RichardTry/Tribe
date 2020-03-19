@@ -1,14 +1,20 @@
 #include "object.h"
-#include "object_content.h"
 
 Object::Object()
-{}
-
-void Object::draw(RenderWindow& window)
 {
-    RectangleShape object(objlib[contentID].spriteSize);
+
+}
+
+void Object::update(const float & dt, std::vector<ObjectContent> & objlib)
+{
+
+}
+
+void Object::render(sf::RenderTarget * target, std::vector<ObjectContent> & objlib)
+{
+    sf::RectangleShape object(objlib[contentID].spriteSize);
     object.setTexture(&objlib[contentID].texture);
     object.setOrigin(objlib[contentID].spriteOrigin);
     object.setPosition(position.x, position.y);
-    window.draw(object);
+    target->draw(object);
 }

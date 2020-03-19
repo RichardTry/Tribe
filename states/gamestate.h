@@ -3,20 +3,29 @@
 
 #include "state.h"
 #include "chunk.h"
+#include "object_content.h"
+#include "unit_content.h"
 
 class GameState : public State
 {
     protected:
 
-        std::unordered_map<long long, Chunk> world;
+        sf::View camera;
+
+        sf::Texture tileset;
+        std::unordered_map<long long, Chunk> * world;
+        std::vector<ObjectContent> objlib;
+        std::vector<UnitContent> unitlib;
+
+        void initContent();
 
     public:
-        GameState(sf::RenderWindow* window);
+        GameState(sf::RenderWindow * window);
         virtual ~GameState();
 
         void endState();
 
-        void updateKeybinds(const float& dt);
+        void updateInput(const float& dt);
         void update(const float& dt);
         void render(sf::RenderTarget* target = nullptr);
 };

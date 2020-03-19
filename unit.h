@@ -3,15 +3,20 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
+#include "unit_content.h"
 
-struct Unit
+class Unit
 {
-    Vector2f position;
-    unsigned int contentID;
-    unsigned int direction;
+    private:
 
-    void draw(RenderWindow& window);
+        sf::Vector2f position;
+        unsigned int contentID;
+        unsigned int direction;
+
+    public:
+
+        void update(const float & dt, std::vector<UnitContent> & unitlib);
+        void render(sf::RenderTarget * target, std::vector<UnitContent> & unitlib);
 };
 
 #endif // UNIT_H_INCLUDED

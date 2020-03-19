@@ -5,9 +5,9 @@
 
 class Game
 {
-    private:
+    protected:
     //
-    sf::RenderWindow *window;
+    sf::RenderWindow * window;
     sf::Event event;
 
     sf::Clock dtClock;

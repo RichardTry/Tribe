@@ -1,7 +1,7 @@
 #include "chunk.h"
 #include <iostream>
 
-Texture tileset;
+sf::Texture tileset;
 
 Chunk::Chunk()
 {
@@ -20,16 +20,16 @@ long long coordsToKey(sf::Vector2i coords)
     return (((long long)coords.x) << 32) + (long long)coords.y;
 }
 
-void Chunk::render(sf::RenderTarget& target)
+void Chunk::render(sf::RenderTarget* target)
 {
-    RectangleShape tile(Vector2f(1, 1));
+    sf::RectangleShape tile(sf::Vector2f(1, 1));
     tile.setTexture(&tileset);
     for (uint8_t y = 0; y < CHUNK_SIZE; ++y)
         for (uint8_t x = 0; x < CHUNK_SIZE; ++x)
         {
-            tile.setPosition(Vector2f(position.x * int(CHUNK_SIZE) + x, position.y * int(CHUNK_SIZE) + y));
-            tile.setTextureRect(IntRect(TILE_TEXTURE_SIZE * tiles[x][y].biome, 0, TILE_TEXTURE_SIZE, TILE_TEXTURE_SIZE));
-            target.draw(tile);
+            tile.setPosition(sf::Vector2f(position.x * int(CHUNK_SIZE) + x, position.y * int(CHUNK_SIZE) + y));
+            tile.setTextureRect(sf::IntRect(TILE_TEXTURE_SIZE * tiles[x][y].biome, 0, TILE_TEXTURE_SIZE, TILE_TEXTURE_SIZE));
+            target->draw(tile);
         }
 }
 
@@ -38,9 +38,9 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
     perlinVector.x = rand() % 65 - 32;
     perlinVector.y = rand() % 65 - 32;
 
-    long long keyRight = coordsToKey(Vector2i(position.x + 1, position.y));
-    long long keyBottom = coordsToKey(Vector2i(position.x, position.y + 1));
-    long long keyBottomRight = coordsToKey(Vector2i(position.x + 1, position.y + 1));
+    long long keyRight = coordsToKey(sf::Vector2i(position.x + 1, position.y));
+    long long keyBottom = coordsToKey(sf::Vector2i(position.x, position.y + 1));
+    long long keyBottomRight = coordsToKey(sf::Vector2i(position.x + 1, position.y + 1));
 
     int perlinRight, perlinBottom, perlinBottomRight;
 
@@ -81,18 +81,6 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             int res = xTop + ty * (xBot - xTop);
             tiles[x][y].biome = res;
         }
-
-    for (int i = 0; i < 50; ++i){
-    Object o;
-    o.contentID = 0;
-    o.position = Vector2i(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
-    objects.push_back(o);
-    }
-
-    Unit u;
-    u.contentID = 0;
-    u.position = Vector2f(position.x * CHUNK_SIZE + rand() % CHUNK_SIZE, position.y * CHUNK_SIZE + rand() % CHUNK_SIZE);
-    units.push_back(u);
 
     generated = true;
 }
