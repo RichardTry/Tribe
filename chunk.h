@@ -2,7 +2,6 @@
 #define CHUNK_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
-using namespace sf;
 #include <algorithm>
 #include <vector>
 #include <unordered_map>
@@ -17,21 +16,22 @@ extern Texture tileset;
 class Chunk
 {
     public:
-    Vector2i position;
-    Vector2i perlinVector;
+    sf::Vector2i position;
+    sf::Vector2i perlinVector;
     int perlinTest;
     bool generated;
     Tile tiles[CHUNK_SIZE][CHUNK_SIZE];
     std::vector<Object> objects;
     std::vector<Unit> units;
+
     Chunk();
     Chunk(int x, int y);
-    void draw(RenderWindow& window);
-    void generate();
+
+    void update(const float& dt);
+    void render(sf::RenderTarget& target);
+    void generate(std::unordered_map<long long, Chunk> & world);
 };
 
 long long coordsToKey(Vector2i coords);
-
-extern std::unordered_map<long long, Chunk> world;
 
 #endif // CHUNK_H_INCLUDED

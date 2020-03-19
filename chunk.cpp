@@ -3,8 +3,6 @@
 
 Texture tileset;
 
-std::unordered_map<long long, Chunk> world;
-
 Chunk::Chunk()
 {
 }
@@ -17,12 +15,12 @@ Chunk::Chunk(int x, int y)
     generated = false;
 }
 
-long long coordsToKey(Vector2i coords)
+long long coordsToKey(sf::Vector2i coords)
 {
     return (((long long)coords.x) << 32) + (long long)coords.y;
 }
 
-void Chunk::draw(RenderWindow& window)
+void Chunk::render(sf::RenderTarget& target)
 {
     RectangleShape tile(Vector2f(1, 1));
     tile.setTexture(&tileset);
@@ -31,11 +29,11 @@ void Chunk::draw(RenderWindow& window)
         {
             tile.setPosition(Vector2f(position.x * int(CHUNK_SIZE) + x, position.y * int(CHUNK_SIZE) + y));
             tile.setTextureRect(IntRect(TILE_TEXTURE_SIZE * tiles[x][y].biome, 0, TILE_TEXTURE_SIZE, TILE_TEXTURE_SIZE));
-            window.draw(tile);
+            target.draw(tile);
         }
 }
 
-void Chunk::generate()
+void Chunk::generate(std::unordered_map<long long, Chunk> & world)
 {
     perlinVector.x = rand() % 65 - 32;
     perlinVector.y = rand() % 65 - 32;

@@ -8,6 +8,7 @@ class GameState : public State
 {
     protected:
 
+        std::unordered_map<long long, Chunk> world;
 
     public:
         GameState(sf::RenderWindow* window);
