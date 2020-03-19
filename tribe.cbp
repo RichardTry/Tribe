@@ -59,6 +59,8 @@
 		<Unit filename="object_content.h" />
 		<Unit filename="states/gamestate.cpp" />
 		<Unit filename="states/gamestate.h" />
+		<Unit filename="states/mainmenustate.cpp" />
+		<Unit filename="states/mainmenustate.h" />
 		<Unit filename="states/state.cpp" />
 		<Unit filename="states/state.h" />
 		<Unit filename="test_noise.h" />
