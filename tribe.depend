@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1584611351 source:/home/paxom/codeblocks-projects/tribe/main.cpp
+1584613109 source:/home/paxom/codeblocks-projects/tribe/main.cpp
 	"main.h"
 	"game.h"
 
@@ -83,24 +83,33 @@
 	"unit.h"
 	"unit_content.h"
 
-1584611509 source:/home/paxom/codeblocks-projects/tribe/game.cpp
+1584619931 source:/home/paxom/codeblocks-projects/tribe/game.cpp
 	"game.h"
 
-1584611980 /home/paxom/codeblocks-projects/tribe/game.h
-	"state.h"
+1584617450 /home/paxom/codeblocks-projects/tribe/game.h
+	"gamestate.h"
 
-1584612599 /home/paxom/codeblocks-projects/tribe/state.h
+1584619638 /home/paxom/codeblocks-projects/tribe/state.h
+	<iostream>
 	<vector>
 	<ctime>
 	<cstdlib>
 	<fstream>
 	<sstream>
+	<stack>
+	<map>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
 
-1584611806 source:/home/paxom/codeblocks-projects/tribe/state.cpp
+1584618278 source:/home/paxom/codeblocks-projects/tribe/state.cpp
+	"state.h"
+
+1584619823 source:/home/paxom/codeblocks-projects/tribe/gamestate.cpp
+	"gamestate.h"
+
+1584619103 /home/paxom/codeblocks-projects/tribe/gamestate.h
 	"state.h"
 

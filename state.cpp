@@ -1,11 +1,25 @@
 #include "state.h"
 
-State::State()
+State::State(sf::RenderWindow* window)
 {
-    //ctor
+    this->window = window;
+    this->quit = false;
 }
 
 State::~State()
 {
     //dtor
+}
+
+const bool & State::getQuit() const
+{
+    return this->quit;
+}
+
+void State::checkForQuit()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    {
+        this->quit = true;
+    }
 }

@@ -26,14 +26,26 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+void Game::initStates()
+{
+    this->states.push(new GameState(this->window));
+}
+
 Game::Game()
 {
     this->initWindow();
+    this->initStates();
 }
 
 Game::~Game()
 {
     delete this->window;
+
+    while (!this->states.empty())
+    {
+        delete this->states.top();
+        this->states.pop();
+    }
 }
 
 void Game::updateDt()
@@ -54,11 +66,34 @@ void Game::updateEvents()
 void Game::update()
 {
     this->updateEvents();
+
+    if (!this->states.empty())
+    {
+        this->states.top()->update(this->dt);
+
+
+        if (this->states.top()->getQuit())
+        {
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+
+    // Application end
+    else
+    {
+        this->window->close();
+    }
 }
 
 void Game::render()
 {
     this->window->clear();
+
+    if (!this->states.empty())
+        this->states.top()->render();
+
     this->window->display();
 }
 

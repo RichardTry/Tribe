@@ -49,6 +49,8 @@
 		<Unit filename="dsq.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
+		<Unit filename="gamestate.cpp" />
+		<Unit filename="gamestate.h" />
 		<Unit filename="init.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
