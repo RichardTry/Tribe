@@ -3,6 +3,7 @@
 
 #include "state.h"
 #include "chunk.h"
+#include "world.h"
 #include "object_content.h"
 #include "unit_content.h"
 
@@ -11,11 +12,9 @@ class GameState : public State
     protected:
 
         sf::View camera;
+        float camera_speed;
 
-        sf::Texture tileset;
-        std::unordered_map<long long, Chunk> * world;
-        std::vector<ObjectContent> objlib;
-        std::vector<UnitContent> unitlib;
+        World world;
 
         void initContent();
 

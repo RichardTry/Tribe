@@ -2,19 +2,20 @@
 
 GameState::GameState(sf::RenderWindow * window) : State(window)
 {
-    this->world = new std::unordered_map<long long, Chunk>();
     this->initContent();
 }
 
 GameState::~GameState()
 {
-    delete world;
+
 }
 
 void GameState::initContent()
 {
     camera.setCenter(sf::Vector2f(0.0, 0.0));
     camera.setSize(sf::Vector2f(window->getSize()));
+    camera.zoom(0.05);
+    camera_speed = 20;
 }
 
 void GameState::endState()
@@ -26,38 +27,32 @@ void GameState::updateInput(const float & dt)
 {
     this->checkForQuit();
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        camera.move(0, -camera_speed * dt);
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        std::cout << "A\n";
+        camera.move(-camera_speed * dt, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        camera.move(0, camera_speed * dt);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        camera.move(camera_speed * dt, 0);
     }
 }
 
 void GameState::update(const float & dt)
 {
+    updateMousePosition();
     this->updateInput(dt);
 }
 
 void GameState::render(sf::RenderTarget * target)
 {
     target->setView(camera);
-
-    for (int y = 0; y <= 0; ++y)
-        {
-            for (int x = 0; x <= 0; ++x)
-            {
-                long long key = coordsToKey(sf::Vector2i(x, y));
-                auto it = world->find(key);
-                if (it != world->end())
-                {
-                    if (!it->second.generated)
-                        it->second.generate(*world);
-                }
-                else
-                {
-                    (*world)[key] = Chunk(x, y);
-                    (*world)[key].generate(*world);
-                }
-                (*world)[key].render(target);
-            }
-        }
+    world.render(target, &camera);
 }

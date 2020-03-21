@@ -10,15 +10,13 @@
 #include "unit.h"
 
 const unsigned int CHUNK_SIZE = 32;
-
-extern sf::Texture tileset;
+const unsigned int CHUNK_FACTOR = 2;
 
 class Chunk
 {
     public:
     sf::Vector2i position;
     sf::Vector2i perlinVector;
-    int perlinTest;
     bool generated;
     Tile tiles[CHUNK_SIZE][CHUNK_SIZE];
     std::vector<Object> objects;
@@ -28,7 +26,7 @@ class Chunk
     Chunk(int x, int y);
 
     void update(const float & dt);
-    void render(sf::RenderTarget* target);
+    void render(sf::RenderTarget* target, sf::Texture * tileset);
     void generate(std::unordered_map<long long, Chunk> & world);
 };
 

@@ -23,6 +23,10 @@ class State
         std::vector<sf::Texture> textures;
         bool quit;
 
+        sf::Vector2i  mousePositionScreen;
+        sf::Vector2i  mousePositionWindow;
+        sf::Vector2f  mousePositionView;
+
     public:
         State(sf::RenderWindow* window);
         virtual ~State();
@@ -32,6 +36,7 @@ class State
         virtual void checkForQuit();
 
         virtual void endState() = 0;
+        virtual void updateMousePosition();
         virtual void updateInput(const float& dt) = 0;
         virtual void update(const float& dt) = 0;
         virtual void render(sf::RenderTarget* target = nullptr) = 0;

@@ -27,6 +27,7 @@ void MainMenuState::updateInput(const float & dt)
 
 void MainMenuState::update(const float & dt)
 {
+    updateMousePosition();
     this->updateInput(dt);
 }
 

@@ -1,7 +1,7 @@
 #ifndef DSQ_H_INCLUDED
 #define DSQ_H_INCLUDED
 
-#include "map.h"
+#include "world.h"
 #include <unordered_map>
 
 struct DiamondSquare
