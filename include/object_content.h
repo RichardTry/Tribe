@@ -6,11 +6,11 @@
 
 struct ObjectContent
 {
+    sf::Texture * texture;
     sf::Vector2f spriteSize;
     sf::Vector2f spriteOrigin;
-    sf::Vector2u collision;
+    //sf::Vector2u collision;
     //Vector2u collisionOrigin;
-    sf::Texture texture;
     Animation animation;
 };
 

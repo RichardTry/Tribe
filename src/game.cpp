@@ -28,13 +28,20 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-    this->states.push(new GameState(this->window));
+    this->states.push(new GameState(this->window, "savings/test.save"));
+}
+
+void Game::initContent()
+{
+    content = new Content();
+    content->initContent();
 }
 
 Game::Game()
 {
     this->initWindow();
     this->initStates();
+    this->initContent();
 }
 
 Game::~Game()
@@ -65,44 +72,44 @@ void Game::updateEvents()
 
 void Game::update()
 {
-    this->updateEvents();
+    updateEvents();
 
-    if (!this->states.empty())
+    if (!states.empty())
     {
-        this->states.top()->update(this->dt);
+        states.top()->update(dt, content);
 
 
-        if (this->states.top()->getQuit())
+        if (states.top()->getQuit())
         {
-            this->states.top()->endState();
-            delete this->states.top();
-            this->states.pop();
+            states.top()->endState();
+            delete states.top();
+            states.pop();
         }
     }
 
     // Application end
     else
     {
-        this->window->close();
+        window->close();
     }
 }
 
 void Game::render()
 {
-    this->window->clear();
+    window->clear();
 
-    if (!this->states.empty())
-        this->states.top()->render(this->window);
+    if (!states.empty())
+        states.top()->render(window, content);
 
-    this->window->display();
+    window->display();
 }
 
 void Game::run()
 {
-    while (this->window->isOpen())
+    while (window->isOpen())
     {
-        this->updateDt();
-        this->update();
-        this->render();
+        updateDt();
+        update();
+        render();
     }
 }

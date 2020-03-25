@@ -112,17 +112,17 @@
 1584619103 /home/paxom/codeblocks-projects/tribe/gamestate.h
 	"state.h"
 
-1584809438 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
+1585139182 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
 	"gamestate.h"
 
-1584784096 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
+1585135388 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
 	"state.h"
 	"chunk.h"
 	"world.h"
 	"object_content.h"
 	"unit_content.h"
 
-1584738550 /home/paxom/codeblocks-projects/tribe/states/state.h
+1585133938 /home/paxom/codeblocks-projects/tribe/states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -136,6 +136,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
+	"content.h"
 
 1584738748 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
 	"state.h"
@@ -182,16 +183,17 @@
 	<unordered_map>
 	"chunk.h"
 
-1584786094 source:/home/paxom/codeblocks-projects/tribe/src/world.cpp
+1585141518 source:/home/paxom/codeblocks-projects/tribe/src/world.cpp
 	"world.h"
 
-1584785609 /home/paxom/codeblocks-projects/tribe/include/world.h
+1585138590 /home/paxom/codeblocks-projects/tribe/include/world.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
 	"chunk.h"
+	"content.h"
 
-1584810648 /home/paxom/codeblocks-projects/tribe/include/chunk.h
+1585138751 /home/paxom/codeblocks-projects/tribe/include/chunk.h
 	<SFML/Graphics.hpp>
 	<algorithm>
 	<vector>
@@ -202,11 +204,11 @@
 
 1584528059 /home/paxom/codeblocks-projects/tribe/include/tile.h
 
-1584651783 /home/paxom/codeblocks-projects/tribe/include/object.h
+1585138350 /home/paxom/codeblocks-projects/tribe/include/object.h
 	<SFML/Graphics.hpp>
-	"object_content.h"
+	"content.h"
 
-1584651583 /home/paxom/codeblocks-projects/tribe/include/object_content.h
+1585141143 /home/paxom/codeblocks-projects/tribe/include/object_content.h
 	<SFML/Graphics.hpp>
 	"animation.h"
 
@@ -219,24 +221,25 @@
 1584651588 /home/paxom/codeblocks-projects/tribe/include/unit_content.h
 	"animation.h"
 
-1584810529 source:/home/paxom/codeblocks-projects/tribe/src/chunk.cpp
+1585138840 source:/home/paxom/codeblocks-projects/tribe/src/chunk.cpp
 	"chunk.h"
 	<iostream>
 
-1584647026 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
+1585135429 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
 	"game.h"
 
-1584647775 /home/paxom/codeblocks-projects/tribe/include/game.h
+1585053616 /home/paxom/codeblocks-projects/tribe/include/game.h
+	"content.h"
 	"states/gamestate.h"
 
-1584784096 /home/paxom/codeblocks-projects/tribe//states/gamestate.h
+1585135388 /home/paxom/codeblocks-projects/tribe//states/gamestate.h
 	"state.h"
 	"chunk.h"
 	"world.h"
 	"object_content.h"
 	"unit_content.h"
 
-1584738550 /home/paxom/codeblocks-projects/tribe//states/state.h
+1585133938 /home/paxom/codeblocks-projects/tribe//states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -250,6 +253,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
+	"content.h"
 
 1584649361 source:/home/paxom/codeblocks-projects/tribe/src/main.cpp
 	"game.h"
@@ -261,9 +265,19 @@
 	"world.h"
 	<unordered_map>
 
-1584651801 source:/home/paxom/codeblocks-projects/tribe/src/object.cpp
+1585141130 source:/home/paxom/codeblocks-projects/tribe/src/object.cpp
 	"object.h"
 
 1584655179 source:/home/paxom/codeblocks-projects/tribe/src/unit.cpp
 	"unit.h"
+
+1585141251 /home/paxom/codeblocks-projects/tribe/include/content.h
+	<unordered_map>
+	<fstream>
+	<SFML/Graphics.hpp>
+	"object_content.h"
+	"unit_content.h"
+
+1585141328 source:/home/paxom/codeblocks-projects/tribe/src/content.cpp
+	"content.h"
 

@@ -3,6 +3,7 @@
 
 Chunk::Chunk()
 {
+    generated = false;
 }
 
 Chunk::Chunk(int x, int y)
@@ -14,9 +15,9 @@ Chunk::Chunk(int x, int y)
     generated = false;
 }
 
-long long coordsToKey(sf::Vector2i coords)
+long long coordsToKey(int x, int y)
 {
-    return (((long long)coords.x) << 32) + (long long)coords.y;
+    return (((long long)x) << 32) + (long long)y;
 }
 
 void Chunk::render(sf::RenderTarget * target, sf::Texture * tileset)
@@ -34,9 +35,9 @@ void Chunk::render(sf::RenderTarget * target, sf::Texture * tileset)
 
 void Chunk::generate(std::unordered_map<long long, Chunk> & world)
 {
-    long long keyRight = coordsToKey(sf::Vector2i(position.x + 1, position.y));
-    long long keyBottom = coordsToKey(sf::Vector2i(position.x, position.y + 1));
-    long long keyBottomRight = coordsToKey(sf::Vector2i(position.x + 1, position.y + 1));
+    long long keyRight = coordsToKey(position.x + 1, position.y);
+    long long keyBottom = coordsToKey(position.x, position.y + 1);
+    long long keyBottomRight = coordsToKey(position.x + 1, position.y + 1);
 
     sf::Vector2i perlinVectorRight, perlinVectorBottom, perlinVectorBottomRight;
 
@@ -92,7 +93,5 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             if (res > 6) tiles[x][y].biome = 6;
             if (res > 7) tiles[x][y].biome = 7;
         }
-
-    std::cout << position.x << ", " << position.y << " generated\n";
     generated = true;
 }

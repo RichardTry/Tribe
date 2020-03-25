@@ -16,17 +16,17 @@ class GameState : public State
 
         World world;
 
-        void initContent();
+        void initFromSaving(std::string save);
 
     public:
-        GameState(sf::RenderWindow * window);
+        GameState(sf::RenderWindow * window, std::string save);
         virtual ~GameState();
 
         void endState();
 
-        void updateInput(const float& dt);
-        void update(const float& dt);
-        void render(sf::RenderTarget* target = nullptr);
+        void updateInput(const float & dt);
+        void update(const float & dt, Content * content);
+        void render(sf::RenderTarget * target = nullptr, Content * content = nullptr);
 };
 
 #endif // GAMESTATE_H

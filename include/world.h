@@ -7,14 +7,13 @@
 #include <math.h>
 
 #include "chunk.h"
+#include "content.h"
 
 class World
 {
     private:
         sf::Texture tileset;
         std::unordered_map<long long, Chunk> world;
-        std::vector<ObjectContent> objlib;
-        std::vector<UnitContent> unitlib;
 
         void initWorld();
 
@@ -24,8 +23,10 @@ class World
         World();
         virtual ~World();
 
+        void addObject(int x, int y, Object & obj);
+
         void update(const float & dt);
-        void render(sf::RenderTarget * target, sf::View * view);
+        void render(sf::RenderTarget * target, Content * content, sf::View * view);
 };
 
 #endif // WORLD_H

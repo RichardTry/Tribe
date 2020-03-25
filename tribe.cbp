@@ -46,6 +46,7 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/chunk.h" />
+		<Unit filename="include/content.h" />
 		<Unit filename="include/dsq.h" />
 		<Unit filename="include/game.h" />
 		<Unit filename="include/init.h" />
@@ -59,6 +60,7 @@
 		<Unit filename="include/view.h" />
 		<Unit filename="include/world.h" />
 		<Unit filename="src/chunk.cpp" />
+		<Unit filename="src/content.cpp" />
 		<Unit filename="src/dsq.cpp" />
 		<Unit filename="src/game.cpp" />
 		<Unit filename="src/main.cpp" />

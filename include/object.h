@@ -2,20 +2,19 @@
 #define OBJECT_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
-#include "object_content.h"
+
+#include "content.h"
 
 class Object
 {
-    private:
-        sf::Vector2i position;
-        unsigned int contentID;
-
     public:
+        sf::Vector2i position;
+        std::string contentID;
 
         Object();
 
-        void update(const float & dt, std::vector<ObjectContent> & objlib);
-        void render(sf::RenderTarget * target, std::vector<ObjectContent> & objlib);
+        void update(const float & dt, Content * content);
+        void render(sf::RenderTarget * target, Content * content);
 };
 
 #endif // OBJECT_H_INCLUDED

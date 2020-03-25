@@ -30,6 +30,6 @@ class Chunk
     void generate(std::unordered_map<long long, Chunk> & world);
 };
 
-long long coordsToKey(sf::Vector2i coords);
+long long coordsToKey(int x, int y);
 
 #endif // CHUNK_H_INCLUDED
