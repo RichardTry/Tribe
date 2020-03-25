@@ -12,6 +12,7 @@ class Object
         std::string contentID;
 
         Object();
+        Object(int x, int y, std::string ID);
 
         void update(const float & dt, Content * content);
         void render(sf::RenderTarget * target, Content * content);

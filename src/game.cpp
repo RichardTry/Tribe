@@ -4,7 +4,7 @@ void Game::initWindow()
 {
     /* Creates a SFML window using options from a window.ini file */
 
-    std::ifstream ifs("Config/window.ini");
+    std::ifstream ifs("config/window.ini");
 
     std::string title = "None";
     sf::VideoMode window_boubds(1120, 630);

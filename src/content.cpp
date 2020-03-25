@@ -1,8 +1,9 @@
 #include "content.h"
+#include <iostream>
 
 Content::Content()
 {
-    initContent();
+
 }
 
 Content::~Content()
@@ -15,22 +16,28 @@ void Content::initContent()
     std::ifstream iftex("resources/textures.list");
     if (iftex.is_open())
     {
-        std::string texture_name, texture_file_name;
-        iftex >> texture_name >> texture_file_name;
-        //sf::Texture tex;
-        //texlib[texture_name] = tex;
-        texlib[texture_name].loadFromFile("resources/textures/" + texture_file_name);
+        while(!iftex.eof())
+        {
+            std::string texture_name, texture_file_name;
+            iftex >> texture_name >> texture_file_name;
+            if (texture_name == "") std::cout << "WARNING EMPTY FILE!\n";
+            texlib[texture_name].loadFromFile("resources/textures/" + texture_file_name);
+        }
     }
     iftex.close();
 
     std::ifstream ifobj("resources/objects.list");
     if (ifobj.is_open())
     {
-        std::string object_name, object_texture_name;
-        ifobj >> object_name >> object_texture_name;
-        objlib[object_name].texture = &texlib[object_texture_name];
-        ifobj >> objlib[object_name].spriteSize.x >> objlib[object_name].spriteSize.y;
-        ifobj >> objlib[object_name].spriteOrigin.x >> objlib[object_name].spriteOrigin.y;
+        while (!ifobj.eof())
+        {
+            std::string object_name, object_texture_name;
+            ifobj >> object_name >> object_texture_name;
+            if (object_name == "") std::cout << "WARNING EMPTY FILE!\n";
+            objlib[object_name].texture = &texlib[object_texture_name];
+            ifobj >> objlib[object_name].spriteSize.x >> objlib[object_name].spriteSize.y;
+            ifobj >> objlib[object_name].spriteOrigin.x >> objlib[object_name].spriteOrigin.y;
+        }
     }
     ifobj.close();
 }

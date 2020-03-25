@@ -5,6 +5,12 @@ Object::Object()
 
 }
 
+Object::Object(int x, int y, std::string ID)
+{
+    position = sf::Vector2i(x, y);
+    contentID = ID;
+}
+
 void Object::update(const float & dt, Content * content)
 {
 

@@ -83,15 +83,23 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             int xBot = termLeftBot + tx * (termRightBot - termLeftBot);
             int res = xTop + ty * (xBot - xTop);
             res = std::min(std::max(0, res / 2), 8);
-            tiles[x][y].biome = 8;
-            if (res > 0) tiles[x][y].biome = 3;
-            if (res > 1) tiles[x][y].biome = 1;
-            if (res > 2) tiles[x][y].biome = 2;
-            if (res > 3) tiles[x][y].biome = 3;
-            if (res > 4) tiles[x][y].biome = 4;
-            if (res > 5) tiles[x][y].biome = 5;
-            if (res > 6) tiles[x][y].biome = 6;
-            if (res > 7) tiles[x][y].biome = 7;
+            if (res == 0) tiles[x][y].biome = 8;
+            if (res == 1)
+            {
+                tiles[x][y].biome = 3;
+                if (rand() % 20 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, "palm1"));
+            }
+            if (res == 2) tiles[x][y].biome = 1;
+            if (res == 3) tiles[x][y].biome = 2;
+            if (res == 4) tiles[x][y].biome = 3;
+            if (res == 5) tiles[x][y].biome = 4;
+            if (res == 6)
+            {
+                tiles[x][y].biome = 5;
+                if (rand() % 5 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, "tree1"));
+            }
+            if (res == 7) tiles[x][y].biome = 6;
+            if (res == 8) tiles[x][y].biome = 7;
         }
     generated = true;
 }
