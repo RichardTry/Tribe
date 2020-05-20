@@ -92,7 +92,6 @@ void GameState::update(const float & dt, Content * content)
 
 void GameState::render(sf::RenderTarget * target, Content * content)
 {
-    ImGui::SFML::Render(*target);
     target->setView(camera);
     world.render(target, content, &camera);
 }

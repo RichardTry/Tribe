@@ -30,20 +30,9 @@ void MainMenuState::update(const float & dt, Content * content)
 {
     updateMousePosition();
     this->updateInput(dt);
-
-    ImGui::Begin("Sosat!");
-        if (ImGui::Button("Start game"))
-        {
-            states->push(new GameState(this->window, states, "savings/test.save"));
-        }
-        if (ImGui::Button("Quit"))
-        {
-            quit = true;
-        }
-    ImGui::End();
 }
 
 void MainMenuState::render(sf::RenderTarget * target, Content * content)
 {
-    ImGui::SFML::Render(*target);
+
 }

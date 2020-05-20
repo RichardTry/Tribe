@@ -112,7 +112,7 @@
 1584619103 /home/paxom/codeblocks-projects/tribe/gamestate.h
 	"state.h"
 
-1587928997 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
+1590010139 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
 	"gamestate.h"
 
 1587928853 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
@@ -122,7 +122,7 @@
 	"object_content.h"
 	"unit_content.h"
 
-1587928500 /home/paxom/codeblocks-projects/tribe/states/state.h
+1590010109 /home/paxom/codeblocks-projects/tribe/states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -137,8 +137,6 @@
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
 	"content.h"
-	"imgui/imgui.h"
-	"imgui/imgui-SFML.h"
 
 1587928209 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
 	"state.h"
@@ -171,7 +169,7 @@
 1584651588 /home/paxom/codeblocks-projects/tribe//unit_content.h
 	"animation.h"
 
-1587929536 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
+1590010176 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
 	"mainmenustate.h"
 
 1587928377 /home/paxom/codeblocks-projects/tribe/states/mainmenustate.h
@@ -227,13 +225,11 @@
 	"chunk.h"
 	<iostream>
 
-1587929441 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
+1590010368 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
 	"game.h"
 
-1587928009 /home/paxom/codeblocks-projects/tribe/include/game.h
+1590010118 /home/paxom/codeblocks-projects/tribe/include/game.h
 	"content.h"
-	"imgui/imgui.h"
-	"imgui/imgui-SFML.h"
 	"states/mainmenustate.h"
 	"states/gamestate.h"
 
@@ -244,7 +240,7 @@
 	"object_content.h"
 	"unit_content.h"
 
-1587928500 /home/paxom/codeblocks-projects/tribe//states/state.h
+1590010109 /home/paxom/codeblocks-projects/tribe//states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -259,8 +255,6 @@
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
 	"content.h"
-	"imgui/imgui.h"
-	"imgui/imgui-SFML.h"
 
 1584649361 source:/home/paxom/codeblocks-projects/tribe/src/main.cpp
 	"game.h"

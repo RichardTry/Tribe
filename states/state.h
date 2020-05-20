@@ -17,8 +17,6 @@
 #include <SFML/Network.hpp>
 
 #include "content.h"
-#include "imgui/imgui.h"
-#include "imgui/imgui-SFML.h"
 
 class State
 {

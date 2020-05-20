@@ -28,13 +28,13 @@ void Game::initWindow()
 
 void Game::initGUI()
 {
-    ImGui::SFML::Init(*window);
+
 }
 
 void Game::initStates()
 {
-    //this->states.push(new GameState(this->window, "savings/test.save"));
-    this->states.push(new MainMenuState(this->window, &this->states));
+    this->states.push(new GameState(this->window, &this->states, "savings/test.save"));
+    //this->states.push(new MainMenuState(this->window, &this->states));
 }
 
 void Game::initContent()
@@ -72,7 +72,6 @@ void Game::updateEvents()
 {
         while (this->window->pollEvent(this->event))
         {
-                ImGui::SFML::ProcessEvent(this->event);
 
                 if (this->event.type == sf::Event::Closed)
                     this->window->close();
@@ -81,7 +80,7 @@ void Game::updateEvents()
 
 void Game::updateGUI()
 {
-    ImGui::SFML::Update(*window, dtClock.restart());
+
 }
 
 void Game::update()
@@ -106,7 +105,6 @@ void Game::update()
     // Application end
     else
     {
-        ImGui::SFML::Shutdown();
         window->close();
     }
 }
