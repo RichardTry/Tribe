@@ -112,17 +112,17 @@
 1584619103 /home/paxom/codeblocks-projects/tribe/gamestate.h
 	"state.h"
 
-1585139182 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
+1587928997 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
 	"gamestate.h"
 
-1585135388 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
+1587928853 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
 	"state.h"
 	"chunk.h"
 	"world.h"
 	"object_content.h"
 	"unit_content.h"
 
-1585133938 /home/paxom/codeblocks-projects/tribe/states/state.h
+1587928500 /home/paxom/codeblocks-projects/tribe/states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -137,8 +137,10 @@
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
 	"content.h"
+	"imgui/imgui.h"
+	"imgui/imgui-SFML.h"
 
-1584738748 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
+1587928209 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
 	"state.h"
 
 1584709088 /home/paxom/codeblocks-projects/tribe//chunk.h
@@ -169,12 +171,12 @@
 1584651588 /home/paxom/codeblocks-projects/tribe//unit_content.h
 	"animation.h"
 
-1584738911 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
+1587929536 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
 	"mainmenustate.h"
 
-1584656469 /home/paxom/codeblocks-projects/tribe/states/mainmenustate.h
-	<SFML/Graphics.hpp>
+1587928377 /home/paxom/codeblocks-projects/tribe/states/mainmenustate.h
 	"state.h"
+	"gamestate.h"
 
 1584739140 source:/home/paxom/codeblocks-projects/tribe/src/Map.cpp
 	"Map.h"
@@ -204,7 +206,7 @@
 
 1584528059 /home/paxom/codeblocks-projects/tribe/include/tile.h
 
-1585147715 /home/paxom/codeblocks-projects/tribe/include/object.h
+1587847959 /home/paxom/codeblocks-projects/tribe/include/object.h
 	<SFML/Graphics.hpp>
 	"content.h"
 
@@ -221,25 +223,28 @@
 1584651588 /home/paxom/codeblocks-projects/tribe/include/unit_content.h
 	"animation.h"
 
-1585151068 source:/home/paxom/codeblocks-projects/tribe/src/chunk.cpp
+1587847987 source:/home/paxom/codeblocks-projects/tribe/src/chunk.cpp
 	"chunk.h"
 	<iostream>
 
-1585151909 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
+1587929441 source:/home/paxom/codeblocks-projects/tribe/src/game.cpp
 	"game.h"
 
-1585053616 /home/paxom/codeblocks-projects/tribe/include/game.h
+1587928009 /home/paxom/codeblocks-projects/tribe/include/game.h
 	"content.h"
+	"imgui/imgui.h"
+	"imgui/imgui-SFML.h"
+	"states/mainmenustate.h"
 	"states/gamestate.h"
 
-1585135388 /home/paxom/codeblocks-projects/tribe//states/gamestate.h
+1587928853 /home/paxom/codeblocks-projects/tribe//states/gamestate.h
 	"state.h"
 	"chunk.h"
 	"world.h"
 	"object_content.h"
 	"unit_content.h"
 
-1585133938 /home/paxom/codeblocks-projects/tribe//states/state.h
+1587928500 /home/paxom/codeblocks-projects/tribe//states/state.h
 	<iostream>
 	<vector>
 	<ctime>
@@ -254,6 +259,8 @@
 	<SFML/Audio.hpp>
 	<SFML/Network.hpp>
 	"content.h"
+	"imgui/imgui.h"
+	"imgui/imgui-SFML.h"
 
 1584649361 source:/home/paxom/codeblocks-projects/tribe/src/main.cpp
 	"game.h"
@@ -265,7 +272,7 @@
 	"world.h"
 	<unordered_map>
 
-1585147733 source:/home/paxom/codeblocks-projects/tribe/src/object.cpp
+1587847930 source:/home/paxom/codeblocks-projects/tribe/src/object.cpp
 	"object.h"
 
 1584655179 source:/home/paxom/codeblocks-projects/tribe/src/unit.cpp
@@ -278,7 +285,155 @@
 	"object_content.h"
 	"unit_content.h"
 
-1585151873 source:/home/paxom/codeblocks-projects/tribe/src/content.cpp
+1585152029 source:/home/paxom/codeblocks-projects/tribe/src/content.cpp
 	"content.h"
 	<iostream>
+
+1587928377 /home/paxom/codeblocks-projects/tribe//states/mainmenustate.h
+	"state.h"
+	"gamestate.h"
+
+1587916693 source:/home/paxom/codeblocks-projects/tribe/imgui/imgui-SFML.cpp
+	"imgui-SFML.h"
+	"imgui.h"
+	<SFML/Config.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/OpenGL.hpp>
+	<SFML/Window/Clipboard.hpp>
+	<SFML/Window/Cursor.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/Window.hpp>
+	<cassert>
+	<cmath>
+	<cstddef>
+	<cstring>
+	<android/native_activity.h>
+	<jni.h>
+	<SFML/System/NativeActivity.hpp>
+
+1587916050 /home/paxom/codeblocks-projects/tribe/imgui/imgui-SFML.h
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Window/Joystick.hpp>
+	"imgui-SFML_export.h"
+
+1587916050 /home/paxom/codeblocks-projects/tribe/imgui/imgui-SFML_export.h
+
+1587915928 /home/paxom/codeblocks-projects/tribe/imgui/imgui.h
+	"imconfig.h"
+	<float.h>
+	<stdarg.h>
+	<stddef.h>
+	<string.h>
+	<assert.h>
+	<stdint.h>
+	"imgui_user.h"
+
+1587916217 /home/paxom/codeblocks-projects/tribe/imgui/imconfig.h
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	"imgui-SFML_export.h"
+
+1587915928 source:/home/paxom/codeblocks-projects/tribe/imgui/imgui.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<ctype.h>
+	<stdio.h>
+	<stddef.h>
+	<stdint.h>
+	<Windows.h>
+	<windows.h>
+	<TargetConditionals.h>
+	"stb_sprintf.h"
+	<Carbon/Carbon.h>
+	<imm.h>
+	"imgui_user.inl"
+
+1587915928 /home/paxom/codeblocks-projects/tribe/imgui/imgui_internal.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	"imstb_textedit.h"
+
+1587915928 /home/paxom/codeblocks-projects/tribe/imgui/imstb_textedit.h
+	<string.h>
+
+1587915928 source:/home/paxom/codeblocks-projects/tribe/imgui/imgui_demo.cpp
+	"imgui.h"
+	<ctype.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdint.h>
+
+1587915928 source:/home/paxom/codeblocks-projects/tribe/imgui/imgui_draw.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<stdio.h>
+	<alloca.h>
+	<malloc.h>
+	<stdlib.h>
+	"imstb_rectpack.h"
+	"imstb_truetype.h"
+
+1587915928 /home/paxom/codeblocks-projects/tribe/imgui/imstb_rectpack.h
+	<stdlib.h>
+	<assert.h>
+
+1587915928 /home/paxom/codeblocks-projects/tribe/imgui/imstb_truetype.h
+	"stb_truetype.h"
+	<stdio.h>
+	"stb_truetype.h"
+	<math.h>
+	<math.h>
+	<math.h>
+	<math.h>
+	<math.h>
+	<stdlib.h>
+	<assert.h>
+	<string.h>
+	<string.h>
+
+1587915928 source:/home/paxom/codeblocks-projects/tribe/imgui/imgui_widgets.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<ctype.h>
+	<stddef.h>
+	<stdint.h>
+	"imstb_textedit.h"
+
+1587915928 /home/paxom/codeblocks-projects/tribe//imgui/imgui.h
+	"imconfig.h"
+	<float.h>
+	<stdarg.h>
+	<stddef.h>
+	<string.h>
+	<assert.h>
+	<stdint.h>
+	"imgui_user.h"
+
+1587916217 /home/paxom/codeblocks-projects/tribe//imgui/imconfig.h
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Color.hpp>
+	"imgui-SFML_export.h"
+
+1587916050 /home/paxom/codeblocks-projects/tribe//imgui/imgui-SFML_export.h
+
+1587916050 /home/paxom/codeblocks-projects/tribe//imgui/imgui-SFML.h
+	<SFML/System/Vector2.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Window/Joystick.hpp>
+	"imgui-SFML_export.h"
 

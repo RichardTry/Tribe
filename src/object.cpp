@@ -5,9 +5,10 @@ Object::Object()
 
 }
 
-Object::Object(int x, int y, std::string ID)
+Object::Object(int x, int y, int rot, std::string ID)
 {
     position = sf::Vector2i(x, y);
+    rotation = rot;
     contentID = ID;
 }
 

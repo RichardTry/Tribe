@@ -9,10 +9,11 @@ class Object
 {
     public:
         sf::Vector2i position;
+        int rotation;
         std::string contentID;
 
         Object();
-        Object(int x, int y, std::string ID);
+        Object(int x, int y, int rot, std::string ID);
 
         void update(const float & dt, Content * content);
         void render(sf::RenderTarget * target, Content * content);

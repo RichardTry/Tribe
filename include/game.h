@@ -2,6 +2,9 @@
 #define GAME_H
 
 #include "content.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui-SFML.h"
+#include "states/mainmenustate.h"
 #include "states/gamestate.h"
 
 class Game
@@ -19,6 +22,7 @@ class Game
 
     //
     void initWindow();
+    void initGUI();
     void initStates();
     void initContent();
 
@@ -30,6 +34,7 @@ class Game
         //
         void updateDt();
         void updateEvents();
+        void updateGUI();
         void update();
         void render();
         void run();

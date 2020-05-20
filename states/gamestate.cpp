@@ -1,6 +1,6 @@
 #include "gamestate.h"
 
-GameState::GameState(sf::RenderWindow * window, std::string save) : State(window)
+GameState::GameState(sf::RenderWindow * window, std::stack<State*>* states, std::string save) : State(window, states)
 {
     this->initFromSaving(save);
 }
@@ -92,6 +92,7 @@ void GameState::update(const float & dt, Content * content)
 
 void GameState::render(sf::RenderTarget * target, Content * content)
 {
+    ImGui::SFML::Render(*target);
     target->setView(camera);
     world.render(target, content, &camera);
 }

@@ -17,12 +17,14 @@
 #include <SFML/Network.hpp>
 
 #include "content.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui-SFML.h"
 
 class State
 {
     protected:
-        sf::RenderWindow* window;
-        std::vector<sf::Texture> textures;
+        sf::RenderWindow * window;
+        std::stack<State*> * states;
         bool quit;
 
         sf::Vector2i  mousePositionScreen;
@@ -30,7 +32,7 @@ class State
         sf::Vector2f  mousePositionView;
 
     public:
-        State(sf::RenderWindow* window);
+        State(sf::RenderWindow* window, std::stack<State*>* states);
         virtual ~State();
 
         const bool& getQuit() const;

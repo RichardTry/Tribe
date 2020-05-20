@@ -19,7 +19,7 @@ class GameState : public State
         void initFromSaving(std::string save);
 
     public:
-        GameState(sf::RenderWindow * window, std::string save);
+        GameState(sf::RenderWindow * window, std::stack<State*> * states, std::string save);
         virtual ~GameState();
 
         void endState();

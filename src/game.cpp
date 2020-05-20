@@ -26,9 +26,15 @@ void Game::initWindow()
     this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+void Game::initGUI()
+{
+    ImGui::SFML::Init(*window);
+}
+
 void Game::initStates()
 {
-    this->states.push(new GameState(this->window, "savings/test.save"));
+    //this->states.push(new GameState(this->window, "savings/test.save"));
+    this->states.push(new MainMenuState(this->window, &this->states));
 }
 
 void Game::initContent()
@@ -40,6 +46,7 @@ void Game::initContent()
 Game::Game()
 {
     this->initWindow();
+    this->initGUI();
     this->initStates();
     this->initContent();
 }
@@ -65,14 +72,23 @@ void Game::updateEvents()
 {
         while (this->window->pollEvent(this->event))
         {
+                ImGui::SFML::ProcessEvent(this->event);
+
                 if (this->event.type == sf::Event::Closed)
                     this->window->close();
         }
 }
 
+void Game::updateGUI()
+{
+    ImGui::SFML::Update(*window, dtClock.restart());
+}
+
 void Game::update()
 {
+    updateDt();
     updateEvents();
+    updateGUI();
 
     if (!states.empty())
     {
@@ -90,6 +106,7 @@ void Game::update()
     // Application end
     else
     {
+        ImGui::SFML::Shutdown();
         window->close();
     }
 }
@@ -108,7 +125,6 @@ void Game::run()
 {
     while (window->isOpen())
     {
-        updateDt();
         update();
         render();
     }

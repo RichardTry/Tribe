@@ -20,6 +20,7 @@
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
+					<Add library="GL" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -37,6 +38,7 @@
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
+					<Add library="GL" />
 				</Linker>
 			</Target>
 		</Build>
@@ -44,6 +46,21 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="cb.bmp" />
+		<Unit filename="imgui/imconfig-SFML.h" />
+		<Unit filename="imgui/imconfig.h" />
+		<Unit filename="imgui/imgui-SFML.cpp" />
+		<Unit filename="imgui/imgui-SFML.h" />
+		<Unit filename="imgui/imgui-SFML_export.h" />
+		<Unit filename="imgui/imgui.cpp" />
+		<Unit filename="imgui/imgui.h" />
+		<Unit filename="imgui/imgui.ini" />
+		<Unit filename="imgui/imgui_demo.cpp" />
+		<Unit filename="imgui/imgui_draw.cpp" />
+		<Unit filename="imgui/imgui_internal.h" />
+		<Unit filename="imgui/imgui_widgets.cpp" />
+		<Unit filename="imgui/imstb_rectpack.h" />
+		<Unit filename="imgui/imstb_textedit.h" />
+		<Unit filename="imgui/imstb_truetype.h" />
 		<Unit filename="include/animation.h" />
 		<Unit filename="include/chunk.h" />
 		<Unit filename="include/content.h" />

@@ -87,7 +87,7 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             if (res == 1)
             {
                 tiles[x][y].biome = 3;
-                if (rand() % 20 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, "palm1"));
+                if (rand() % 20 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "palm1"));
             }
             if (res == 2) tiles[x][y].biome = 1;
             if (res == 3) tiles[x][y].biome = 2;
@@ -96,7 +96,7 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             if (res == 6)
             {
                 tiles[x][y].biome = 5;
-                if (rand() % 5 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, "tree1"));
+                if (rand() % 5 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "tree1"));
             }
             if (res == 7) tiles[x][y].biome = 6;
             if (res == 8) tiles[x][y].biome = 7;
