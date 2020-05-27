@@ -30,7 +30,7 @@ void MainMenuState::initGUI()
         gui.add(button);
         button->setToolTip(toolTip);
         button->setPosition(50, 200 + 30 * i);
-        button->connect("pressed", std::bind(&MainMenuState::endState, this));
+        button->connect("pressed", std::bind(&MainMenuState::startGameState, this));
     }
 }
 
