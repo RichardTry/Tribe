@@ -10,6 +10,8 @@ GameState::~GameState()
 
 }
 
+void GameState::initGUI(){}
+
 void GameState::initFromSaving(std::string save)
 {
     camera.setSize(sf::Vector2f(window->getSize()));

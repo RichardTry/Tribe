@@ -22,6 +22,8 @@ class GameState : public State
         GameState(sf::RenderWindow * window, std::stack<State*> * states, std::string save);
         virtual ~GameState();
 
+        void initGUI();
+
         void endState();
 
         void updateInput(const float & dt);
