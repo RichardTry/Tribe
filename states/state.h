@@ -9,12 +9,15 @@
 #include <sstream>
 #include <stack>
 #include <map>
+#include <functional>
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+
+#include <TGUI/TGUI.hpp>
 
 #include "content.h"
 
@@ -30,18 +33,21 @@ class State
         sf::Vector2f  mousePositionView;
 
     public:
-        State(sf::RenderWindow* window, std::stack<State*>* states);
+        tgui::Gui gui;
+
+        State(sf::RenderWindow * window, std::stack<State*> * states);
         virtual ~State();
 
         const bool& getQuit() const;
 
         virtual void checkForQuit();
 
-        virtual void endState() = 0;
+        virtual void initGUI() = 0;
         virtual void updateMousePosition();
         virtual void updateInput(const float & dt) = 0;
         virtual void update(const float & dt, Content * content) = 0;
         virtual void render(sf::RenderTarget * target = nullptr, Content * content = nullptr) = 0;
+        virtual void endState() = 0;
 };
 
 #endif // STATE_H

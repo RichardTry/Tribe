@@ -1,6 +1,6 @@
 #include "gamestate.h"
 
-GameState::GameState(sf::RenderWindow * window, std::stack<State*>* states, std::string save) : State(window, states)
+GameState::GameState(sf::RenderWindow * window, std::stack<State*> * states, std::string save) : State(window, states)
 {
     this->initFromSaving(save);
 }

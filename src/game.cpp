@@ -33,8 +33,8 @@ void Game::initGUI()
 
 void Game::initStates()
 {
-    this->states.push(new GameState(this->window, &this->states, "savings/test.save"));
-    //this->states.push(new MainMenuState(this->window, &this->states));
+    //this->states.push(new GameState(this->window, &this->states, "savings/test.save"));
+    this->states.push(new MainMenuState(this->window, &this->states));
 }
 
 void Game::initContent()
@@ -72,9 +72,11 @@ void Game::updateEvents()
 {
         while (this->window->pollEvent(this->event))
         {
+            if (this->event.type == sf::Event::Closed)
+                this->window->close();
 
-                if (this->event.type == sf::Event::Closed)
-                    this->window->close();
+            if (!states.empty())
+                states.top()->gui.handleEvent(event);
         }
 }
 
