@@ -112,7 +112,7 @@
 1584619103 /home/paxom/codeblocks-projects/tribe/gamestate.h
 	"state.h"
 
-1590617106 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
+1591657444 source:/home/paxom/codeblocks-projects/tribe/states/gamestate.cpp
 	"gamestate.h"
 
 1590617106 /home/paxom/codeblocks-projects/tribe/states/gamestate.h
@@ -140,7 +140,7 @@
 	<TGUI/TGUI.hpp>
 	"content.h"
 
-1590084195 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
+1590619169 source:/home/paxom/codeblocks-projects/tribe/states/state.cpp
 	"state.h"
 
 1584709088 /home/paxom/codeblocks-projects/tribe//chunk.h
@@ -171,11 +171,12 @@
 1584651588 /home/paxom/codeblocks-projects/tribe//unit_content.h
 	"animation.h"
 
-1590258170 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
+1590618343 source:/home/paxom/codeblocks-projects/tribe/states/mainmenustate.cpp
 	"mainmenustate.h"
 
-1590084039 /home/paxom/codeblocks-projects/tribe/states/mainmenustate.h
+1590439267 /home/paxom/codeblocks-projects/tribe/states/mainmenustate.h
 	"state.h"
+	"mainmenuguistate.h"
 	"gamestate.h"
 
 1584739140 source:/home/paxom/codeblocks-projects/tribe/src/Map.cpp
