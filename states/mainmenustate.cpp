@@ -49,13 +49,13 @@ void MainMenuState::updateInput(const float & dt)
     }
 }
 
-void MainMenuState::update(const float & dt, Content * content)
+void MainMenuState::update(const float & dt)
 {
     updateMousePosition();
     this->updateInput(dt);
 }
 
-void MainMenuState::render(sf::RenderTarget * target, Content * content)
+void MainMenuState::render(sf::RenderTarget * target)
 {
     gui.draw();
 }

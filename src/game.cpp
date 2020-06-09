@@ -37,18 +37,11 @@ void Game::initStates()
     this->states.push(new MainMenuState(this->window, &this->states));
 }
 
-void Game::initContent()
-{
-    content = new Content();
-    content->initContent();
-}
-
 Game::Game()
 {
     this->initWindow();
     this->initGUI();
     this->initStates();
-    this->initContent();
 }
 
 Game::~Game()
@@ -93,7 +86,7 @@ void Game::update()
 
     if (!states.empty())
     {
-        states.top()->update(dt, content);
+        states.top()->update(dt);
 
 
         if (states.top()->getQuit())
@@ -116,7 +109,7 @@ void Game::render()
     window->clear();
 
     if (!states.empty())
-        states.top()->render(window, content);
+        states.top()->render(window);
 
     window->display();
 }

@@ -15,14 +15,12 @@ class Game
     sf::Clock dtClock;
     float dt;
 
-    Content * content;
     std::stack <State*> states;
 
     //
     void initWindow();
     void initGUI();
     void initStates();
-    void initContent();
 
     public:
         //

@@ -2,6 +2,7 @@
 #define GAMESTATE_H
 
 #include "state.h"
+#include "content.h"
 #include "chunk.h"
 #include "world.h"
 #include "object_content.h"
@@ -15,6 +16,7 @@ class GameState : public State
         float camera_speed;
 
         World world;
+        Content content;
 
         void initFromSaving(std::string save);
 
@@ -27,8 +29,8 @@ class GameState : public State
         void endState();
 
         void updateInput(const float & dt);
-        void update(const float & dt, Content * content);
-        void render(sf::RenderTarget * target = nullptr, Content * content = nullptr);
+        void update(const float & dt);
+        void render(sf::RenderTarget * target = nullptr);
 };
 
 #endif // GAMESTATE_H

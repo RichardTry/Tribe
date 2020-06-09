@@ -4,6 +4,7 @@ GameState::GameState(sf::RenderWindow * window, std::stack<State*> * states, std
 {
     gui.setTarget(*window);
     this->initGUI();
+    this->content.initContent();
     this->initFromSaving(save);
 }
 
@@ -88,14 +89,14 @@ void GameState::updateInput(const float & dt)
     }
 }
 
-void GameState::update(const float & dt, Content * content)
+void GameState::update(const float & dt)
 {
     updateMousePosition();
     this->updateInput(dt);
 }
 
-void GameState::render(sf::RenderTarget * target, Content * content)
+void GameState::render(sf::RenderTarget * target)
 {
     target->setView(camera);
-    world.render(target, content, &camera);
+    world.render(target, &content, &camera);
 }
