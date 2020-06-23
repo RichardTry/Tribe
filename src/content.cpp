@@ -13,6 +13,14 @@ Content::~Content()
 
 void Content::initContent()
 {
+    //lua experiments
+    lua_State* L = luaL_newstate();
+    luaL_dostring(L, "x = 42");
+    lua_getglobal(L, "x");
+    lua_Number x = lua_tonumber(L, 1);
+    std::cout << "Lua says: " << (int)x << std::endl;
+    lua_close(L);
+
     std::ifstream iftex("resources/textures.list");
     if (iftex.is_open())
     {

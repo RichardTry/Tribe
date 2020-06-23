@@ -7,6 +7,7 @@
 
 #include "object_content.h"
 #include "unit_content.h"
+#include "lua/include/lua.hpp"
 
 class Content
 {
