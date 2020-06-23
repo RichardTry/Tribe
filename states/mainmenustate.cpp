@@ -36,7 +36,7 @@ void MainMenuState::initGUI()
 
 void MainMenuState::startGameState()
 {
-    this->states->push(new GameState(this->window, states, "savings/test.save"));
+    this->states->push(new GameState(this->window, states, "test_world"));
 }
 
 void MainMenuState::updateInput(const float & dt)

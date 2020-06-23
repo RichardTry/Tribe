@@ -19,7 +19,7 @@ void GameState::initFromSaving(std::string save)
 {
     camera.setSize(sf::Vector2f(window->getSize()));
 
-    std::ifstream ifs(save);
+    std::ifstream ifs("save/" + save + "/save");
 
     sf::Vector2f cameraCenter;
     float zoom;
