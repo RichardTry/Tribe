@@ -4,7 +4,7 @@ GameState::GameState(sf::RenderWindow * window, std::stack<State*> * states, std
 {
     gui.setTarget(*window);
     this->initGUI();
-    this->content.initContent();
+    this->content.initContent(save);
     this->initFromSaving(save);
 }
 
