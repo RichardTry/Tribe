@@ -1,1 +1,3 @@
-register_tile({texture = "grass.png"})
+register_tile("grass", {
+	texture = "grass.png"
+})

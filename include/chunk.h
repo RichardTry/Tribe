@@ -26,7 +26,7 @@ class Chunk
     Chunk(int x, int y);
 
     void update(const float & dt);
-    void render(sf::RenderTarget* target, sf::Texture * tileset);
+    void render(sf::RenderTarget* target, Content * content);
     void generate(std::unordered_map<long long, Chunk> & world);
 };
 

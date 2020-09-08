@@ -1,6 +1,13 @@
 #include "content.h"
 #include <iostream>
 
+std::string Content::current_mod = "";
+
+std::unordered_map <std::string, sf::Texture> Content::texlib;
+std::unordered_map <std::string, TileContent> Content::tilelib;
+std::unordered_map <std::string, ObjectContent> Content::objlib;
+std::unordered_map <std::string, UnitContent> Content::unitlib;
+
 Content::Content()
 {
 
@@ -13,12 +20,13 @@ Content::~Content()
 
 int Content::register_tile(lua_State * L)
 {
-    if (lua_istable(L, 1))
-    {
-        lua_getfield(L, 1, "texture");
-        std::string texture = luaL_checkstring(L, -1);
-        std::cout << texture << std::endl;
-    }
+    std::string name = luaL_checkstring(L, 1);
+    lua_getfield(L, 2, "texture");
+    std::string texture = luaL_checkstring(L, -1);
+    std::cout << name << std::endl;
+    tilelib[name].texture = new sf::Texture();
+    tilelib[name].texture->loadFromFile("mods/" + current_mod + "/textures/" + texture);
+    std::cout << texture << std::endl;
     return 1;
 }
 
@@ -27,44 +35,30 @@ void Content::initContent(std::string save)
     std::ifstream ifmods("save/" + save + "/mods.txt");
     if (ifmods.is_open())
     {
-        while(!ifmods.eof())
+        while(ifmods >> current_mod)
         {
-            std::string mod_name;
-            ifmods >> mod_name;
-            if (mod_name == "")
+            if (current_mod == "")
             {
                 std::cout << "Warning: saving with zero mods\n";
                 break;
             }
 
             lua_State * L = luaL_newstate();
-            lua_pushcfunction(L, Content::register_tile);
-            lua_setglobal(L, "register_tile");
-            std::string lua_file = "mods/" + mod_name + "/init.lua";
+            lua_register(L, "register_tile", Content::register_tile);
+            //lua_pushcfunction(L, Content::register_tile);
+            //lua_setglobal(L, "register_tile");
+            std::string lua_file = "mods/" + current_mod + "/init.lua";
             int ok = luaL_dofile(L, lua_file.c_str());
             if (ok != LUA_OK)
-                std::cout << "Lua error!\n";
+                std::cout << "Error at loading " << current_mod << " mod!\n";
             else
-                std::cout << "Lua nice work!\n";
+                std::cout << current_mod << " mod loaded.\n";
             lua_close(L);
 
         }
     }
     ifmods.close();
-
-    std::ifstream iftex("resources/textures.list");
-    if (iftex.is_open())
-    {
-        while(!iftex.eof())
-        {
-            std::string texture_name, texture_file_name;
-            iftex >> texture_name >> texture_file_name;
-            if (texture_name == "") std::cout << "WARNING EMPTY FILE!\n";
-            texlib[texture_name].loadFromFile("resources/textures/" + texture_file_name);
-        }
-    }
-    iftex.close();
-
+    /*
     std::ifstream ifobj("resources/objects.list");
     if (ifobj.is_open())
     {
@@ -78,5 +72,7 @@ void Content::initContent(std::string save)
             ifobj >> objlib[object_name].spriteOrigin.x >> objlib[object_name].spriteOrigin.y;
         }
     }
+
     ifobj.close();
+    */
 }

@@ -12,7 +12,6 @@
 class World
 {
     private:
-        sf::Texture tileset;
         std::unordered_map<long long, Chunk> world;
 
         void initWorld();

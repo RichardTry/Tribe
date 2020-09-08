@@ -20,15 +20,14 @@ long long coordsToKey(int x, int y)
     return (((long long)x) << 32) + (long long)y;
 }
 
-void Chunk::render(sf::RenderTarget * target, sf::Texture * tileset)
+void Chunk::render(sf::RenderTarget * target, Content * content)
 {
     sf::RectangleShape tile(sf::Vector2f(1, 1));
-    tile.setTexture(tileset);
     for (uint8_t y = 0; y < CHUNK_SIZE; ++y)
         for (uint8_t x = 0; x < CHUNK_SIZE; ++x)
         {
             tile.setPosition(sf::Vector2f(position.x * int(CHUNK_SIZE) + x, position.y * int(CHUNK_SIZE) + y));
-            tile.setTextureRect(sf::IntRect(TILE_TEXTURE_SIZE * (tiles[x][y].biome % 8), TILE_TEXTURE_SIZE * (tiles[x][y].biome / 8), TILE_TEXTURE_SIZE, TILE_TEXTURE_SIZE));
+            tile.setTexture(content->tilelib[tiles[x][y].type].texture);
             target->draw(tile);
         }
 }
@@ -83,23 +82,23 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             int xBot = termLeftBot + tx * (termRightBot - termLeftBot);
             int res = xTop + ty * (xBot - xTop);
             res = std::min(std::max(0, res / 2), 8);
-            if (res == 0) tiles[x][y].biome = 8;
+            if (res == 0) tiles[x][y].type = "grass";//water";
             if (res == 1)
             {
-                tiles[x][y].biome = 3;
+                tiles[x][y].type = "grass";//"sand";
                 if (rand() % 20 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "palm1"));
             }
-            if (res == 2) tiles[x][y].biome = 1;
-            if (res == 3) tiles[x][y].biome = 2;
-            if (res == 4) tiles[x][y].biome = 3;
-            if (res == 5) tiles[x][y].biome = 4;
+            if (res == 2) tiles[x][y].type = "grass";//"wet_grass";
+            if (res == 3) tiles[x][y].type = "grass";//"dry_grass";
+            if (res == 4) tiles[x][y].type = "grass";//"sand";
+            if (res == 5) tiles[x][y].type = "grass";//"grass";
             if (res == 6)
             {
-                tiles[x][y].biome = 5;
+                tiles[x][y].type = "grass";//"cold_grass";
                 if (rand() % 5 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "tree1"));
             }
-            if (res == 7) tiles[x][y].biome = 6;
-            if (res == 8) tiles[x][y].biome = 7;
+            if (res == 7) tiles[x][y].type = "grass";//"ice_grass";
+            if (res == 8) tiles[x][y].type = "grass";//"snow";
         }
     generated = true;
 }

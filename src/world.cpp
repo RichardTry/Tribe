@@ -13,7 +13,7 @@ World::~World()
 
 void World::initWorld()
 {
-    tileset.loadFromFile("resources/textures/tileset-hd.png");
+
 }
 
 void World::addObject(int x, int y, Object & obj)
@@ -37,7 +37,7 @@ void World::render(sf::RenderTarget * target, Content * content, sf::View * view
             if (it == world.end())  world[key] = Chunk(x, y);
             if (!world[key].generated)
                     world[key].generate(world);
-            world[key].render(target, &tileset);
+            world[key].render(target, content);
 
             for (auto & obj : world[key].objects)
             {
