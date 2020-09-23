@@ -31,3 +31,4 @@ void State::updateMousePosition()
     mousePositionWindow = sf::Mouse::getPosition(*window);
     mousePositionView = window->mapPixelToCoords(mousePositionWindow);
 }
+

@@ -17,6 +17,7 @@ class GameState : public State
 
         World world;
         Content content;
+        Object on_cursor;
 
         void initFromSaving(std::string save);
 
@@ -29,8 +30,10 @@ class GameState : public State
         void endState();
 
         void updateInput(const float & dt);
+        void updateOnCursorObject();
         void update(const float & dt);
         void render(sf::RenderTarget * target = nullptr);
 };
 
 #endif // GAMESTATE_H
+

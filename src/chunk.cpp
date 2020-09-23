@@ -82,23 +82,23 @@ void Chunk::generate(std::unordered_map<long long, Chunk> & world)
             int xBot = termLeftBot + tx * (termRightBot - termLeftBot);
             int res = xTop + ty * (xBot - xTop);
             res = std::min(std::max(0, res / 2), 8);
-            if (res == 0) tiles[x][y].type = "grass";//water";
+            if (res == 0) tiles[x][y].type = "water";
             if (res == 1)
             {
-                tiles[x][y].type = "grass";//"sand";
+                tiles[x][y].type = "sand";
                 if (rand() % 20 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "palm1"));
             }
-            if (res == 2) tiles[x][y].type = "grass";//"wet_grass";
-            if (res == 3) tiles[x][y].type = "grass";//"dry_grass";
-            if (res == 4) tiles[x][y].type = "grass";//"sand";
-            if (res == 5) tiles[x][y].type = "grass";//"grass";
+            if (res == 2) tiles[x][y].type = "wet_grass";
+            if (res == 3) tiles[x][y].type = "dry_grass";
+            if (res == 4) tiles[x][y].type = "sand";
+            if (res == 5) tiles[x][y].type = "grass";
             if (res == 6)
             {
-                tiles[x][y].type = "grass";//"cold_grass";
+                tiles[x][y].type = "cold_grass";
                 if (rand() % 5 == 0) objects.push_back(Object(position.x * CHUNK_SIZE + x, position.y * CHUNK_SIZE + y, 0, "tree1"));
             }
-            if (res == 7) tiles[x][y].type = "grass";//"ice_grass";
-            if (res == 8) tiles[x][y].type = "grass";//"snow";
+            if (res == 7) tiles[x][y].type = "ice_grass";
+            if (res == 8) tiles[x][y].type = "snow";
         }
     generated = true;
 }

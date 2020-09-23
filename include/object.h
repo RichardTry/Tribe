@@ -9,7 +9,7 @@ class Object
 {
     public:
         sf::Vector2i position;
-        int rotation;
+        unsigned char rotation;
         std::string contentID;
 
         Object();
@@ -20,3 +20,4 @@ class Object
 };
 
 #endif // OBJECT_H_INCLUDED
+

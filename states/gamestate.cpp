@@ -6,6 +6,8 @@ GameState::GameState(sf::RenderWindow * window, std::stack<State*> * states, std
     this->initGUI();
     this->content.initContent(save);
     this->initFromSaving(save);
+
+    on_cursor.contentID = "head";
 }
 
 GameState::~GameState()
@@ -87,11 +89,25 @@ void GameState::updateInput(const float & dt)
     {
         camera.move(camera_speed * dt, 0);
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    {
+        on_cursor.contentID = "";
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    {
+        on_cursor.rotation++;
+    }
+}
+
+void GameState::updateOnCursorObject()
+{
+    on_cursor.position = sf::Vector2i(mousePositionView);
 }
 
 void GameState::update(const float & dt)
 {
     updateMousePosition();
+    updateOnCursorObject();
     this->updateInput(dt);
 }
 
@@ -99,4 +115,6 @@ void GameState::render(sf::RenderTarget * target)
 {
     target->setView(camera);
     world.render(target, &content, &camera);
+    if (on_cursor.contentID != "") on_cursor.render(target, &content);
 }
+

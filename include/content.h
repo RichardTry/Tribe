@@ -16,6 +16,7 @@ class Content
     private:
         static std::string current_mod;
         static int register_tile(lua_State * L);
+        static int register_object(lua_State * L);
 
     public:
         static std::unordered_map <std::string, sf::Texture> texlib;
@@ -30,3 +31,4 @@ class Content
 };
 
 #endif // CONTENT_H
+
